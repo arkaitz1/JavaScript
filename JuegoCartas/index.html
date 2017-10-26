@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Juego</title>
+	  <script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script>
+    <!--script src="funciones.js" type="text/javascript" ></script-->
+
+    <script language="JavaScript">
+    // Unai Ver 2.0
+    function CrearTablaCartas(n, m){
+        //comentario
+        var aArray = new Array(n);
+
+        for(iFila = 0; iFila < n; iFila++){
+            aArray[iFila] = new Array(m);
+        }
+
+        for(iFila = 0; iFila < n; iFila++){
+            for(iCol = 0; iCol < m; iCol++){
+                bRepe = true;
+                while (bRepe){
+                    bRepe = false;
+                    iAleatorio = Math.floor(Math.random()*n*m+1);
+                    for(f = 0; f < n; f++){
+                        for(c = 0; c < m; c++){
+                            if(aArray[f][c] == iAleatorio){
+                                bRepe = true;
+                            }
+                        }
+                    }
+                }
+                aArray[iFila][iCol] = iAleatorio;
+            }
+        }
+        for(iFila = 0; iFila < n; iFila++){
+            for(iCol = 0; iCol < m; iCol++){
+                aArray[iFila][iCol] = (aArray[iFila][iCol] > ((n*m)/2) )) ? aArray[iFila][iCol] -  ((n*m)/2) ) : aArray[iFila][iCol];
+            }
+        }
+
+        return aArray;
+    }
+
+      N=4;
+      M=10;
+      var aTabla = CrearTablaCartas(N*M);
+
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

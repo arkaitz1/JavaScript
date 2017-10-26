@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ejercicio 4</title>
+</head>
+
+    <body>
+		<script language="JavaScript">
+			var n = 1, cantidadSellos = 3;
+			function cambiarImagen(mov){
+				n +=mov;
+				if(n > cantidadSellos) n = 1;
+				if(n < 1) n = cantidadSellos;			
+				document.getElementById("imSello").src = "img/escudos/"+n+".jpg";
+			}
+		</script>
+        
+        <img src="img/escudos/1.jpg" alt="Escudos" id="imSello" onClick="alerta(1)" /><br>
+        <input type="button" value="Anterior" id="boton" onClick="cambiarImagen(-1)" />
+        <input type="button" value="Siguiente" onClick="cambiarImagen(1)" />
+    </body>
+</html>

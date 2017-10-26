@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+body{
+	 background-color: #FFCC66
+}
+
+h2{
+	font-family: Verdana;
+	color: #6666FF
+}
+
+p{
+	font-family: "Comic Sans MS";
+}
+
+a{ 
+	color:#00770D;
+	text-decoration: none ;
+} 
+
+a:hover{ 
+	color: #FF0000;
+	text-decoration: underline; 
+}
+
+a:visited{
+	color:#00770D;
+	text-decoration: none;
+}

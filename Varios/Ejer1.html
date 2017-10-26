@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+      	<script language="JavaScript">
+		
+		var n;
+		var cambio = new Array(n);
+		for (var i = 0; i<n;i++)
+			cambio[i] = false;
+		function cambiar(id, pos){
+			if (cambio[pos]){
+				document.getElementById(id).src = "img/ANegra.gif";
+				cambio[pos] = false;
+			}else{
+				document.getElementById(id).src = "img/AVerde.gif";
+				cambio[pos] = true;
+			}
+			
+			
+			/*if(document.getElementById(id).src.replace(/^.*[\\\/]/, '') == "AVerde.gif")
+				document.getElementById(id).src = "img/ANegra.gif";
+			else
+				document.getElementById(id).src = "img/AVerde.gif";*/
+		}
+		
+		function cargarImgs(can){
+	
+		n = can;
+		var id = "";
+			for(var i=1; i<=n;i++){
+				if( i < 10)
+					id = "imA0"+i;
+				else 
+					id = "imA"+i;
+				document.write("<img src='img/ANegra.gif' alt='' width='148' height='129' id='"+id+"' onClick='cambiar(\""+id+"\", "+i+");'/>");
+
+			}
+		}
+		
+		</script>
+</head>
+
+    <body>
+    <input type="text" id="cantidad" /> <input type="button" value="probar" onClick="cargarImgs(document.getElementById('cantidad').value);" />
+
+        
+    </body>
+</html>

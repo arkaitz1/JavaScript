@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Regresivo</title>
+<script language="JavaScript">
+
+  idInterval = setInterval(fecha, 1000);//ejecutaremos la funcion cada segundos
+
+  function fecha(){
+    f = new Date();//Recogemos la fehca en la variable f
+    m = f.getMinutes();//Extraemos los minutos de la fecha
+    s = f.getSeconds();//Extrameos los segundo sde la fecha
+
+    //Separamos las unidades y decenas tanto de los segundos como los minutos para poder usar una imagen en cada uno
+    segUnid = s%10;
+    segDece = (s-segUnid)/10;
+
+    minUnid = m%10;
+    minDece = (m-minUnid)/10;
+
+    cambiar(segUnid, segDece, minUnid, minDece);//llamamos a ala funcion cambiar pasando los parametros separados
+  }
+
+  function cambiar(segUnid, segDece, minUnid, minDece){//Cambiamos las imagenes para crear el efecto reloj
+    iSegUnid.src = "img/n"+segUnid+".gif";
+    iSegDece.src = "img/n"+segDece+".gif";
+    iMinUnid.src = "img/n"+minUnid+".gif";
+    iMinDece.src = "img/n"+minDece+".gif";
+  }
+
+</script>
+
+
+</head>
+
+    <body>
+       	<div id="reloj">
+        	<img src="img/n0.gif" id="iMinDece"><img src="img/n0.gif" id="iMinUnid">
+          <span style="font-size:200px">:</span>
+          <img src="img/n0.gif" id="iSegDece"><img src="img/n0.gif" id="iSegUnid">
+        </div>
+        <script>fecha();</script><!-- Esta llamada la hacemos para no tener q esperar un segundo a la primera vez q llama el interval -->
+   </body>
+
+
+
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Letras con imagenes</title>
+
+  </head>
+    <body>
+      <script language="JavaScript">
+         var aMsg = ['Blanco','Blanco','k','a','i','x','o','Blanco','Blanco'];
+        //var sMsg = "kaixo";
+        //var aMsg = sMsg.split("");
+
+        for (i=0;i<aMsg.length;i++)
+          document.write("<img id='img"+i+"' src='img/Blanco.gif' />");
+          idInterval = setInterval("cambiar()", 250);
+
+        function cambiar(){
+          var aux = aMsg[aMsg.length-1];
+          for (i=aMsg.length-1;i>0;i--) aMsg[i] = aMsg[i-1];
+          aMsg[0] = aux;
+          for (i=0;i<aMsg.length;i++)
+            document.getElementById("img"+i).src = "img/"+aMsg[i]+".gif";
+        }
+
+
+      </script>
+
+   </body>
+</html>

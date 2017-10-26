@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ejercicio 3</title>
+
+</head>
+
+    <body onLoad="cambiar();">
+		<script language="JavaScript">
+			//var idTimeout = setTimeout(function(){alert("Hola Mundo");}, 3000);
+			
+
+			idInterval = setInterval(cambiar, 1000);
+
+	
+			function cambiar(){
+				f = new Date();
+				h = f.getHours()
+				m = f.getMinutes();
+				s = f.getSeconds();
+				if (s < 10) s="0"+s;
+				pCont.innerHTML = h+":"+m+":"+s;
+
+			}
+		</script>
+   </body>
+ 
+     
+   <p style="font-size:200px; text-align:center;" id="pCont"></p>
+</html>

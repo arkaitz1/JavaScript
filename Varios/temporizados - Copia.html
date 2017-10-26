@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ejercicio 3</title>
+
+</head>
+
+    <body>
+		<script language="JavaScript">
+			//var idTimeout = setTimeout(function(){alert("Hola Mundo");}, 3000);
+			var i = 1;
+			var parado = false;
+			
+			function contador(){
+				
+				if (!parado){
+					idInterval = setInterval(cambiar, 1000);
+					bSeguir.value = "Parar";			
+					parado = true;
+				}else{
+					clearTimeout (idInterval);
+					bSeguir.value = "Seguir";
+					parado = false;
+				}
+				
+			}
+
+			function cambiar(){
+				pCont.innerHTML = i;
+				i++;
+			}
+		</script>
+   </body>
+   <input type="button" id="bSeguir" value="Epezar" onClick="contador()" />
+     
+   <p style="font-size:256px; text-align:center;" id="pCont">0</p>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Regresivo</title>
+
+</head>
+
+    <body>
+		<script language="JavaScript">
+
+      var iNum;
+      var idInterval;
+			function evIniciar(){//Funcion que se llamara al pulsar el boton Inciar
+        iNum = document.getElementById('inNumero').value;//Guardamos el valor del textBox
+        if (iNum < 0 || iNum > 999)//En caso de que el valor recogido no este entre 0 y 999 mostramos un error
+          alert("El numero tiene que estar entre el 0 y el 999");
+        else{
+        //  separar();//Llamamos a la funcion separar antes de empezar el interval para no esperar un segundo a la primera ejecucion
+          idInterval = setInterval("separar()", 1000);//comenzamos un Intervarl que llamara a ala funcion seraparar cada 1000 milesimas de segundo
+        }
+			}
+
+			function separar(){//Mediante unos calculos separamos el numero que tenemos en unidades, decenas y centenas
+        iUnidades = iNum%10;
+        iDecenas = ((iNum-iUnidades)%100)/10;
+        iCentenas = ((iNum-iDecenas*10)-iUnidades)/100;
+        cambiar(iUnidades, iDecenas, iCentenas);//llamamos a la funcion cambiar pasando como parametros la separacion del numero
+        iNum--;//Reducimos el numero en uno en cada llamada para crear la cuenta antras
+        if (iNum<0)//Si el numero llega a 0 detenemos el Interval
+          clearTimeout (idInterval);
+
+			}
+
+      function cambiar(iUnidades, iDecenas, iCentenas){//cambiamos el src de las imagenes para hacer el efecto contador
+        imUnidades.src = "img/n"+iUnidades+".gif";
+        imDecenas.src = "img/n"+iDecenas+".gif";
+        imCentenas.src = "img/n"+iCentenas+".gif";
+      }
+
+
+		</script>
+        <form>
+        	<input type="text" id="inNumero" name="inNumero" />
+            <input type="button" id="btInciar" name="btIniciar" value="Inciar" onclick="evIniciar()" />
+        </form>
+        <br /><br /><br />
+       	<div id="contador">
+        	<img src="img/n0.gif" id="imCentenas"><img src="img/n0.gif" id="iDecenas"><img src="img/n0.gif" id="imUnidades">
+        </div>
+   </body>
+
+
+
+</html>
