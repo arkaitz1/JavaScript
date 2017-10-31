@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="ANSI">
+    <title>Publicar</title>
+	  <script src="js/PreguntasFV.js" type="text/javascript" ></script>
+
+
+    <script>
+      document.write("<div id='titulo'>CUESTIONARIO</div>");
+      document.write("<div id='cuestionario'>")
+      for(i=1;i<aPreguntas.length;i++){
+        //document.getElementById('cuestionario').innerHTML = "<div><input type='checkbox' id='pregunta"+i+"' />"+aPreguntas[i]+"<br /></div>";
+        document.write("<div class='pregunta'><input type='checkbox' id='chPregunta"+i+"' />");
+        document.write(" "+aPreguntas[i]+"</div>");
+      }
+      document.write("<div class='boton'><input type='button' value='comprobar' /></div>")
+      document.write("</div>")
+    </script>
+    <style>
+      #titulo{
+        width: auto;
+        margin: 0px auto;
+        margin-top: 10px;
+        text-align: center;
+        text-decoration: underline;
+        font-size: 30px;
+
+      }
+      #cuestionario{
+
+        width: 800px;
+        margin: auto;
+        margin-top: 100px;
+        border: solid 1px;
+      }
+      .pregunta{
+        margin: 10px;
+      }
+      .boton{
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+
+  </body>
+</html>

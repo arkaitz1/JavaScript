@@ -1,0 +1,3 @@
+FASE 2
+
+Añadimos un botón al final de la página Corregir que enlace a la página Correccion.html que muestre las preguntas numeradas con fondo rojo o verde según estén acertadas o no y muestre al final un total de aciertos y fallos. Se grabará una cookie resultado con ceros y unos, que se utilizará para calcular los resultados. (1-> acierto, 0-> fallo)
