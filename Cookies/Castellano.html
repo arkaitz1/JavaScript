@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>
+      Cookies
+    </title>
+    	  <script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script>
+        <script>
+          var hoy = new Date();
+          hoy.setDate(hoy.getDate()+7);
+        </script>
+        <style>
+          img{
+            width: 50px;
+            height: 50px;
+          }
+          #texto{
+            float:left;
+
+          }
+          #idiomas{
+            float:right;
+          }
+          #separador{
+            clear:both;
+          }
+        </style>
+  </head>
+  <body>
+      <div id="texto">
+          <h1>Castellano</h1>
+      </div>
+        <div id="idiomas">
+          <a href="Euskera.html" onclick="mandarCookie('lang',0, hoy)"><img src="img/Euskera.jpg" /></a> <a href="Castellano.html" onclick="mandarCookie('lang',1, hoy)"><img src="img/Castellano.jpg" /></a>
+        </div>
+      <div id="separador">
+        <hr />
+      </div>
+  </body>
+</html>
