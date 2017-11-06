@@ -149,8 +149,7 @@ function tablaCartas(N,M, desordenar = true){
 	var aTabla = [];
 	var cont = 1;
 	for(i=0;i<N*M;i++){
-		aTemp[i] = cont;
-		cont++;
+		aTemp[i] = ++cont;
 		if (cont>(N*M)/2) cont = 1;
 	}
 	if(desordenar)
@@ -158,4 +157,24 @@ function tablaCartas(N,M, desordenar = true){
 	for(i=0;i<N;i++)
 		aTabla[i] = aTemp.slice(i*M,(i*M)+M);
 	return aTabla;
+}
+
+
+function tablaCartas2 (n,m){
+	var aArray = new Array(n);
+	for(i = 0; i < n; i++) aArray[i] = new Array(m);
+
+	for (i=0;i<n;i++)
+		for(j=0;j<m;j++){
+			do{
+				cont = 0;
+				num = Math.ceil(Math.random()*((n*m)/2));
+				for(f=0;f<n;f++)
+					for(g=0;g<m;g++)
+						if(aArray[f][g] == num) cont++;
+			}while (!(cont < 2))
+			aArray[i][j] = num;
+		}
+
+	return aArray;
 }
