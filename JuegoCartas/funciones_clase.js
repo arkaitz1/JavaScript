@@ -1,7 +1,20 @@
 // JavaScript Document
 // Funciones de JavasCript para el curso 2DAW3
 
-//Comprobaciï¿½n Juego Resuelto
+function mandarCookie(nombre, valor, caducidad) {
+	document.cookie = nombre + "=" + escape(valor) + ((caducidad == null) ? "" : ("; expires=" + caducidad.toGMTString()))
+}
+
+function consultarCookie(nombre) {
+	var i;
+	var j;
+	var buscamos = nombre + "=";
+	if (document.cookie.length > 0) { i = document.cookie.indexOf(buscamos); if (i != -1) { i += buscamos.length; j = document.cookie.indexOf(";", i); if (j == -1) j = document.cookie.length;
+	return unescape(document.cookie.substring(i,j)); } }
+}
+
+
+//Comprobación Juego Resuelto
 //Ver 1.0
 function JuegoResuelto(aTabla){
 	N=aTabla.length;
@@ -17,25 +30,33 @@ function JuegoResuelto(aTabla){
 	}
 	return bResuelto
 }
+// Ver 2.0 Issac
+      function esAcabado(aTabla){
+        N = aTabla.length;
+        for (i=0;i<(N*N)-2;i++)
+          if(aTabla[N-1][N-1] != 0 || parseInt(aTabla.join().split(",")[i])>parseInt(aTabla.join().split(",")[i+1]))
+            return false;
+        return true;
+      }
 
-// Creaciï¿½n de un Array de 6 elementos sin repeticiï¿½n con valores aleatorios sin repeticiï¿½n de 1 a 49
+// Creación de un Array de 6 elementos sin repetición con valores aleatorios sin repetición de 1 a 49
 //Ver 2.0
  function LoteriaPrimitiva(){
 	 aTabla=[];
 	 for (i=0;i<6;i++){
-
+		
 		do {
 			iAzar=Math.floor(Math.random()*49)+1;
 		}
 		while(aTabla.indexOf(iAzar)!=-1);
-
+		
 		aTabla[i]=iAzar;
-
+		  
 	 }
 	 return aTabla
  }
 
-//Creaciï¿½n de un array de 2 dimensiones de NxN
+//Creación de un array de 2 dimensiones de NxN 
 //Ver 2.0
  function CrearTabla(N){
 	//Creamos la tabla de 2 dimensiones de N*N
@@ -70,7 +91,7 @@ function JuegoResuelto(aTabla){
 
 	Intercambiar(aTabla,f0,c0,N-1,N-1);
 
-	//Ahora hay que ver si tiene soluciï¿½n.
+	//Ahora hay que ver si tiene solución.
 
 	iSuma=0;
 
@@ -81,17 +102,17 @@ function JuegoResuelto(aTabla){
 				iSuma+= ((aTabla[f][c]>aTabla[f][iCol]) && (aTabla[f][iCol]!=0)) ? 1 : 0;
 			}
 			//Y ahora el resto de la tabla
-
+		
 			for (iFila=f+1;iFila<N;iFila++){
 				for (iCol=0;iCol<N;iCol++){
-
+					
 					iSuma+=  ((aTabla[f][c] > aTabla[iFila][iCol]) && (aTabla[iFila][iCol]!=0) ) ? 1 : 0 ;
-
+	
 				}
 			}
-
+		
 		}
-
+			
 	}
 
 	if (iSuma % 2 != 0){
@@ -103,14 +124,19 @@ function JuegoResuelto(aTabla){
 }
 
 function Intercambiar(aMiTabla,i,j,k,m){
-	iAux=aMiTabla[i][j];
+	iAux=aMiTabla[i][j];	
 	aMiTabla[i][j]=aMiTabla[k][m];
 	aMiTabla[k][m]=iAux;
 }
+
+
+
+
 // Unai Ver 2.0
 function CrearTablaCartas(n, m){
 				//comentario
 				var aArray = new Array(n);
+				
 				for(iFila = 0; iFila < n; iFila++){
 					aArray[iFila] = new Array(m);
 				}
@@ -126,54 +152,17 @@ function CrearTablaCartas(n, m){
 									if(aArray[f][c] == iAleatorio){
 										bRepe = true;
 									}
-								}
+								}	
 							}
 						}
 						aArray[iFila][iCol] = iAleatorio;
 					}
 				}
-			/*	for(iFila = 0; iFila < n; iFila++){
+				for(iFila = 0; iFila < n; iFila++){
 					for(iCol = 0; iCol < m; iCol++){
 						aArray[iFila][iCol] = (aArray[iFila][iCol] > ((n*m)/2) ) ? aArray[iFila][iCol] - ((n*m)/2) : aArray[iFila][iCol];
 					}
-				}*/
-
+				}
+				
 				return aArray;
 			}
-
-
-//Cartas Isaac Ver 1.0
-function tablaCartas(N,M, desordenar = true){
-	var aTemp = [];
-	var aTabla = [];
-	var cont = 1;
-	for(i=0;i<N*M;i++){
-		aTemp[i] = ++cont;
-		if (cont>(N*M)/2) cont = 1;
-	}
-	if(desordenar)
-		aTemp = aTemp.sort(function() {return Math.random() - 0.5});
-	for(i=0;i<N;i++)
-		aTabla[i] = aTemp.slice(i*M,(i*M)+M);
-	return aTabla;
-}
-
-
-function tablaCartas2 (n,m){
-	var aArray = new Array(n);
-	for(i = 0; i < n; i++) aArray[i] = new Array(m);
-
-	for (i=0;i<n;i++)
-		for(j=0;j<m;j++){
-			do{
-				cont = 0;
-				num = Math.ceil(Math.random()*((n*m)/2));
-				for(f=0;f<n;f++)
-					for(g=0;g<m;g++)
-						if(aArray[f][g] == num) cont++;
-			}while (!(cont < 2))
-			aArray[i][j] = num;
-		}
-
-	return aArray;
-}
