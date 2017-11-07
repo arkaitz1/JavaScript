@@ -5,8 +5,17 @@
 <title>Regresivo</title>
 <script language="JavaScript">
 
+  var cont = localStorage.getItem("Visitas");
+  cont++;
+
+  localStorage.setItem("Visitas",cont);
+
   idInterval = setInterval(fecha, 1000);//ejecutaremos la funcion cada segundos
 
+  function borrarVisitas(){
+    localStorage.setItem("Visitas",0);
+    document.getElementById('sVisitas').innerHTML = 0;
+  }
   function fecha(){
     f = new Date();//Recogemos la fehca en la variable f
     m = f.getMinutes();//Extraemos los minutos de la fecha
@@ -41,6 +50,11 @@
           <img src="img/n0.gif" id="iSegDece"><img src="img/n0.gif" id="iSegUnid">
         </div>
         <script>fecha();</script><!-- Esta llamada la hacemos para no tener q esperar un segundo a la primera vez q llama el interval -->
+
+        <div id="contador">
+          Visitas: <span id="sVisitas"><script>document.write(cont)</script></span> <input type="button" value="Borrar visitas" onclick="borrarVisitas()" />
+        </div>
+
    </body>
 
 
