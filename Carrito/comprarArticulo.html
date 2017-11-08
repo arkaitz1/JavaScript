@@ -5,16 +5,30 @@
     <title>Carrito de la compra</title>
     <script src="Carrito.js"></script>
     <script>
-    var oPrueba = new Object();
+    var oProducto = new Object();
     for(i = 0;i<aArticulos.length;i++)
       if(aArticulos[i].id == sessionStorage.IdComprando)
-        oPrueba = aArticulos[i];
-      document.write("<img src="+oPrueba.src()+" class='MiImg'>");
+        oProducto = aArticulos[i];
+
+
+    function comprar(){
+
+      aCompra=JSON.parse(sessionStorage.Compra);
+      aCompra[oProducto.id] = cantidad.value;
+      sessionStorage.Compra=JSON.stringify(aCompra);
+      location.href = "carrito.html";
+    }
     </script>
       <style>
       </style>
   </head>
   <body>
+    <img src="#" class="MiImg" onclick="comprar()" id="iFoto" />
+    <br />
+    <input type="text" id="cantidad" /><input type="button" value="Comprar" onclick="comprar()" />
 
+    <script>
+      iFoto.src = oProducto.src();
+    </script>
   </body>
 </html>
