@@ -10,11 +10,11 @@
       if(aArticulos[i].id == sessionStorage.IdComprando)
         oProducto = aArticulos[i];
 
+    aCompra = (sessionStorage.Compra =! undefined) ? JSON.parse(sessionStorage.Compra) : [];
 
     function comprar(){
-
-      aCompra=JSON.parse(sessionStorage.Compra);
-      aCompra[oProducto.id] = cantidad.value;
+      pos = (aCompra.length==undefined) ? 0 : aCompra.length;
+      aCompra[pos] = {"id":oProducto.id, "cant":inCantidad.value};
       sessionStorage.Compra=JSON.stringify(aCompra);
       location.href = "carrito.html";
     }
@@ -25,10 +25,11 @@
   <body>
     <img src="#" class="MiImg" onclick="comprar()" id="iFoto" />
     <br />
-    <input type="text" id="cantidad" /><input type="button" value="Comprar" onclick="comprar()" />
+    <input type="text" id="inCantidad"  /><input type="button" value="Comprar" onclick="comprar()" />
 
     <script>
       iFoto.src = oProducto.src();
+      inCantidad.value = (sessionStorage.Compra =! undefined) ? aCompra[oProducto.id] : 0;
     </script>
   </body>
 </html>

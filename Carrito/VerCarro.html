@@ -7,16 +7,37 @@
     <script>
     aCompra=JSON.parse(sessionStorage.Compra);
     var suma = 0;
+    function eliminar(id){
+      aCompra[id] = 0;
+      sessionStorage.Compra=JSON.stringify(aCompra);
+      location.reload(true);
+    }
+    function comprar(){
+      sessionStorage.removeItem("Compra");
+      sessionStorage.removeItem("idComprando");
+      alert("Compra relizada correctamnte");
+      location.href = "carrito.html";
+    }
     document.write("<table border='1'>");
-    document.write("<tr><td>Nombre</td><td>Cantidad</td><td>Precio</td><td>Total</td></tr>");
+    document.write("<tr><td>Nombre</td><td>Cantidad</td><td>Precio</td><td>Total</td><td>btnEliminar</tr>");
     for(i = 0;i<aArticulos.length;i++)
       if(aCompra[aArticulos[i].id] != '0'){
         precio = aArticulos[i].precio*aCompra[aArticulos[i].id];
-        document.write("<tr><td>"+aArticulos[i].nombre+"</td><td>"+aCompra[aArticulos[i].id]+"</td><td>"+aArticulos[i].precio+"</td><td>"+precio+"</td></tr>")
+        document.write("<tr>"+
+                          "<td>"+aArticulos[i].nombre+"</td>"+
+                          "<td>"+aCompra[aArticulos[i].id]+"</td>"+
+                          "<td>"+aArticulos[i].precio+"</td>"+
+                          "<td>"+precio+"</td>"+
+                          "<td><input type='button' value='Eliminar' onclick='eliminar(\""+aArticulos[i].id+"\")' /></td>"+
+                      "</tr>");
+
         suma += precio;
       }
-      document.write("<tr><td> </td><td> </td><td>Total:</td><td>"+suma+"€</td></tr>");
+      document.write("<tr><td> </td><td> </td><td>Total:</td><td>"+suma+"€</td><td></td></tr>");
     document.write("</table>");
+
+    document.write("<input type='button' value='volver' onclick='location.href = \"carrito.html\"' />");
+    document.write("<input type='button' value='Realizar compra' onclick='comprar()' />");
     </script>
       <style>
       </style>
