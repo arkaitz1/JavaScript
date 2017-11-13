@@ -107,39 +107,40 @@ function Intercambiar(aMiTabla,i,j,k,m){
 	aMiTabla[i][j]=aMiTabla[k][m];
 	aMiTabla[k][m]=iAux;
 }
-// Unai Ver 2.0
+/* Unai Ver 2.0
 function CrearTablaCartas(n, m){
-				//comentario
-				var aArray = new Array(n);
-				for(iFila = 0; iFila < n; iFila++){
-					aArray[iFila] = new Array(m);
-				}
+		//comentario
+		var aArray = new Array(n);
 
-				for(iFila = 0; iFila < n; iFila++){
-					for(iCol = 0; iCol < m; iCol++){
+		for(iFila = 0; iFila < n; iFila++){
+				aArray[iFila] = new Array(m);
+		}
+
+		for(iFila = 0; iFila < n; iFila++){
+				for(iCol = 0; iCol < m; iCol++){
 						bRepe = true;
 						while (bRepe){
-							bRepe = false;
-							iAleatorio = Math.floor(Math.random()*n*m+1);
-							for(f = 0; f < n; f++){
-								for(c = 0; c < m; c++){
-									if(aArray[f][c] == iAleatorio){
-										bRepe = true;
-									}
+								bRepe = false;
+								iAleatorio = Math.floor(Math.random()*n*m+1);
+								for(f = 0; f < n; f++){
+										for(c = 0; c < m; c++){
+												if(aArray[f][c] == iAleatorio){
+														bRepe = true;
+												}
+										}
 								}
-							}
 						}
 						aArray[iFila][iCol] = iAleatorio;
-					}
 				}
-			/*	for(iFila = 0; iFila < n; iFila++){
-					for(iCol = 0; iCol < m; iCol++){
-						aArray[iFila][iCol] = (aArray[iFila][iCol] > ((n*m)/2) ) ? aArray[iFila][iCol] - ((n*m)/2) : aArray[iFila][iCol];
-					}
-				}*/
+		}
+		for(iFila = 0; iFila < n; iFila++){
+				for(iCol = 0; iCol < m; iCol++){
+						aArray[iFila][iCol] = (aArray[iFila][iCol] > ((n*m)/2) )) ? aArray[iFila][iCol] -  ((n*m)/2) ) : aArray[iFila][iCol];
+				}
+		}
 
-				return aArray;
-			}
+		return aArray;
+}*/
 
 
 //Cartas Isaac Ver 1.0

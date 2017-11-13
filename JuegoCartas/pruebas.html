@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Juego</title>
+	  <!--script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script-->
+    <script src="funciones.js" type="text/javascript" ></script>
+
+    <style>
+      img{
+        width: 50px;
+        cursor:pointer;
+      }
+      #error{
+        margin-top: 50px;
+        color:red;
+        text-align: center;
+      }
+      #dContador, #dClicks{
+        text-align: center;
+      }
+      table{
+         margin: auto;
+         border-collapse: collapse;
+         border: green 5px solid;
+      }
+      tr td{
+        border: green 2px solid;
+        padding: 5px;
+      }
+    </style>
+
+    <script language="JavaScript">
+        N=2;
+        M=2;
+
+
+      var aTabla = tablaCartas2(N,M);
+
+      function pintar(){
+        var el = document.getElementById('tabla');
+      for(i=0;i<aTabla.length;i++){
+
+        el.innerHTML = "<tr>";
+        for(f=0;f<aTabla[i].length;f++)
+         el.innerHTML = "<td><img id='imCarta"+i+f+"'src='img/0.png' onclick='Voltear2("+i+","+f+")' /></td>";
+        el.innerHTML = "</tr>" ;
+      }
+    }
+
+
+    </script>
+
+  </head>
+  <body>
+    <table id="tabla">
+      <tr><td>campo1</td><td>campo2</td></tr>
+    </table>
+    <script>pintar()</script>
+  </body>
+</html>

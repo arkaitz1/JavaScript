@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- Plantilla html/js/css -->
+<html>
+  <head>
+    <title>Titulo</title>
+
+    <style>
+    </style>
+    <script  type="text/javascript" >
+
+      if(sessionStorage.nombre == undefined){
+        location.href='Eje2a.html';
+      }else {
+        var sNombre = sessionStorage.nombre;
+        var iEdad = sessionStorage.edad;
+        for(i=0;i<sNombre.length;i++){//Creamos un for que recorra desde el 0 hasta el tamaño del string
+            iLetra = sNombre.charAt(i);//Obtenemos la letra que corresponde conla posicion de la i
+            iLetra = iLetra.toLowerCase();
+            if((iLetra < 'a' || iLetra > 'z') && iLetra != ' ')
+                iLetra = "blanco";
+            if(iLetra == ' ') iLetra = "vacio";//En caso de tener espacios pondremos la imagen vacio
+            document.write("<img src='img/"+iLetra+".gif' />");
+          }
+          document.write("<br />");
+          iSalto = 0;
+          for(i=0;i<iEdad;i++){
+            document.write("<img src='img/Blanco.gif' />");
+            iSalto++;
+            if(iSalto==5){
+              iSalto = 0;
+                document.write("<br />");
+            }
+          }
+      }
+
+
+    </script>
+  </head>
+
+</html>

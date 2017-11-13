@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Juego</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="JuegoParejas.js" type="text/javascript" ></script>
+    <link rel="stylesheet" type="text/css" href="JuegoParejas.css" media="screen" />
+
+    <script language="JavaScript">
+    //Esta funcion requiere jQuery
+    function leerRanking(){
+    	$.getJSON("Ranking.json", function(datos){
+    		alert("Dato " + datos["Facil"]);
+    		$.each(datos["Facil"]["Nombre"], function(idx, puntos){
+    			alert("Puntos: "+ puntos);
+    		});
+    	});
+    }
+    </script>
+
+  </head>
+  <body>
+    <header>
+      <div id="avisos">
+        <div id="error"> </div>
+        <div id="dContador">Tiempo: <span id="vContador">00:00</span></div>
+        <div id="dClicks">Numero de clicks: <span id="vClicks"><script>document.write(nClicks)</script></span></div>
+      </div>
+      <div id="titulo">
+        Juego de parejas
+      </div>
+      <div id="datos">
+          Dificultad =
+            <select id="sDificultad" onchange="cmDificultad()">
+              <option value="1" >Facil</option>
+              <option value="2" >Medio</option>
+              <option value="3" >Dificil</option>
+              <option value="4" >Extremo</option>
+            </select>
+          <br>
+          Puntos Jugada: <span style="color:green" id="sumaPuntos"></span><br>
+          Bono por tiempo:<span style="color:green" id="bonoTiempo"></span><br>
+          Bono por clicks:<span style="color:green" id="bonoClicks"></span><br>
+          Puntuacion: <span id="puntuacion">0</span>
+      </div>
+    </header>
+    <div id="ranking">
+      <table>
+        <tr><td>Pos</td><td>Nombre</td><td>Puntos</td></tr>
+        <tr><td>1</td><td>Xanu</td><td>5000</td></tr>
+        <tr><td>2</td><td>Xanu</td><td>5000</td></tr>
+        <tr><td>3</td><td>Xanu</td><td>5000</td></tr>
+        <tr><td>4</td><td>Xanu</td><td>5000</td></tr>
+        <tr><td>5</td><td>Xanu</td><td>5000</td></tr>
+      </table>
+    </div>
+
+    <script>
+      document.write("<table>");
+      for(i=0;i<aTabla.length;i++){
+        document.write("<tr>");
+        for(f=0;f<aTabla[i].length;f++)
+         document.write("<td><img id='imCarta"+i+f+"'src='img/0.png' onclick='Voltear("+i+","+f+")' /></td>");
+        document.write("</tr>");
+      }
+      document.write("</table>");
+
+      select = document.getElementById("sDificultad");
+      for (i=0;i<select.length;i++)
+        if (select[i].value == dificultad)
+          select[i].selected = true;
+    </script>
+    <input type="button" value="ranking" onclick="leerRanking()" />
+  </body>
+</html>

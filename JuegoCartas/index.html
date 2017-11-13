@@ -5,6 +5,7 @@
     <title>Juego</title>
 	  <!--script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script-->
     <script src="funciones.js" type="text/javascript" ></script>
+
     <style>
       img{
         width: 50px;
@@ -15,28 +16,155 @@
         color:red;
         text-align: center;
       }
+      #dContador, #dClicks{
+        text-align: center;
+      }
       table{
-         background:#8ba987 url('img/fondo.png') no-repeat center center;
          margin: auto;
-         padding: 10px;
-
+         border-collapse: collapse;
+         border: green 5px solid;
       }
       tr td{
-
+        border: green 2px solid;
         padding: 5px;
       }
     </style>
 
     <script language="JavaScript">
-    document.write("<div id='error'>&nbsp</div>");
+    var dificultad = 1;
 
-      N=4;
-      M=5;
+    switch (dificultad) {
+      case 1:N = 2;M = 4;
+        break;
+      case 2:N = 3;M = 6;
+        break;
+      case 3:N = 4;M = 8;
+        break;
+      case 4:N = 5;M = 12;
+        break;
+      default:N=2; M=2;
+    }
+    var nClicks = N*M*3;
+    var nTiempo = N*M*15;
+    document.write("<div id='error'>&nbsp</div>");
+    document.write("<div id='dContador'>Tiempo: <span id='vContador'>00:00</span></div>");
+    document.write("<div id='dClicks'>Numero de clicks: <span id='vClicks'>"+nClicks+"</span></div>");
+
+
+
       if (!((N*M)%2)){
-        var aTabla = CrearTablaCartas(N,M);
+        var aTabla = tablaCartas2(N,M);
       }
       else {
         document.getElementById('error').innerHTML = "No se puede generar una tabla impar";
+      }
+
+      var aCarta1 = [0,0];
+      var aCarta2 = [0,0];
+      var bTerminado = false;
+      var iEmparejadas = 0;
+      var idInterval = setInterval(cuentaAtras, 1000);
+
+      function Voltear (i, j){
+        if(bTerminado) return;
+
+        if(!aCarta1[0]) aCarta1 = [aTabla[i][j],i+""+j];
+        else if(!aCarta2[0]) aCarta2 = [aTabla[i][j],i+""+j];
+        else{
+          //caso en el q las dos estan volteadas
+          document.getElementById("imCarta"+aCarta1[1]).src = "img/0.png";
+          document.getElementById("imCarta"+aCarta2[1]).src = "img/0.png";
+          aCarta1[0] = 0;
+          aCarta2[0] = 0;
+          Voltear(i,j);
+        }
+        document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".png";
+        if(aCarta1[0] == aCarta2[0]){
+          aCarta1[0] = 0;
+          aCarta2[0] = 0;
+          iEmparejadas++;
+        }
+        if(iEmparejadas >= (N*M)/2){
+          document.getElementById('error').innerHTML = "Partida terminada";
+          bTerminado = true;
+        }
+      }
+
+      var aVolteadas = new Array(N);
+      for(h=0;h<N;h++)
+        aVolteadas[h] = new Array(M);
+      for(v=0;v<N;v++)
+        for(z=0;z<M;z++)
+          aVolteadas[v][z] = false;
+      var iCarta1 = "";
+      var iCarta2 = "";
+
+      function Voltear2 (i, j){
+        if(bTerminado) return;//Si la partida esta terminada salgo de la funcion
+        if(aVolteadas[i][j]) return;//Si hago click sobre una carta ya volteada salgo de la funcion
+        finClicks();
+        if(iCarta2 != ""){//En caso de ya tener dos cartas voletadas limpio las posiciones
+          iCarta1 = "";
+          iCarta2 = "";
+        }
+        aVolteadas[i][j] = true;//Cambio el estado de la carta a volteada
+        pintar();//Redibujo la tabla con el estado actual de las cartas
+        if(iCarta1 == "") iCarta1= i+""+j;//Si es la primera carta guardo su posicion
+        else iCarta2= i+""+j;//Si no guardo la de la segunda carta
+
+        if(iCarta2 != ""){//Si la segunda carta tiene una posicion compruebo si las dos cartas son la misma
+          if(aTabla[iCarta1.charAt(0)][iCarta1.charAt(1)] != aTabla[iCarta2.charAt(0)][iCarta2.charAt(1)]){//si no son la misma cambio sus estados a no volteadas
+            aVolteadas[iCarta1.charAt(0)][iCarta1.charAt(1)] = false;
+            aVolteadas[iCarta2.charAt(0)][iCarta2.charAt(1)] = false;
+          }else {
+            iEmparejadas++;
+          }
+          if(iEmparejadas >= (N*M)/2){
+            document.getElementById('error').innerHTML = "Partida terminada";
+            bTerminado = true;
+          }
+        }
+      }
+
+      function pintar(){
+        for (i = 0;i<N;i++)
+          for(j=0;j<M;j++)
+            if(aVolteadas[i][j]){
+              document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".png";
+            }else{
+              document.getElementById("imCarta"+i+j).src = "img/0.png";
+            }
+      }
+      function cuentaAtras(){
+        nTiempo--;
+        if (nTiempo <= 0){
+          clearTimeout (idInterval);
+          finTiempo();
+        }
+        seg = Math.floor(nTiempo%60);
+        min = Math.floor(nTiempo/60);
+        if (seg < 10) seg = "0"+seg;
+        sTiempo = min+":"+seg;
+
+        document.getElementById('vContador').innerHTML = sTiempo;
+      }
+      function finTiempo(){
+        bTerminado = true;
+        bFallo = true;
+        document.getElementById('vContador').style.color = "red";
+        document.getElementById('error').innerHTML = "Tiempo terminado";
+
+      }
+      function finClicks(){
+
+        nClicks--;
+        if (nClicks <= 0){
+            document.getElementById('error').innerHTML = "Has superado el maximo de clicks";
+            document.getElementById('vClicks').style.color = "red";
+            bTerminado = true;
+            clearTimeout (idInterval);
+          }
+        document.getElementById('vClicks').innerHTML = nClicks;
       }
 
       document.write("<table>");
@@ -47,9 +175,8 @@
         document.write("</tr>");
       }
       document.write("</table>");
-
     </script>
-    <script src="juegoCartas.js" type="text/javascript" ></script>
+
   </head>
   <body>
 

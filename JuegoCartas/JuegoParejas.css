@@ -1,0 +1,57 @@
+
+  img{
+    width: 50px;
+    cursor:pointer;
+  }
+  header{
+    padding: 0px;
+    border: green 5px solid;
+    width: 100%;
+    overflow: hidden;
+
+  }
+  #error{
+    color:red;
+    text-align: center;
+  }
+  #dContador, #dClicks{
+    text-align: center;
+  }
+  #datos{
+    margin: 0px;
+    padding: 0px;
+    width: 30%;
+    float:left;
+    border: green 5px solid;
+
+  }
+  #avisos{
+    margin: 0px;
+    padding: 0px;
+    width: 30%;
+    float:left;
+    border: green 5px solid;
+
+  }
+  #titulo{
+    margin: 0px;
+    padding: 0px;
+    width: 38.5%;
+    float:left;
+    text-align: center;
+    font-size: 30px;
+  }
+  #ranking{
+    float:left;
+  }
+  table{
+     
+     margin: auto;
+     border-collapse: collapse;
+     border: green 5px solid;
+     margin-top:10px;
+  }
+  tr td{
+    border: green 2px solid;
+    padding: 5px;
+  }

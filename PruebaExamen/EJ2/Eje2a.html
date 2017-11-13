@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- Plantilla html/js/css -->
+<html>
+  <head>
+    <title>Titulo</title>
+    <style>
+    </style>
+    <script  type="text/javascript" >
+      function enviar(){
+          var nombre = document.getElementById("inNombre").value;
+          var edad = document.getElementById("slEdad").value;
+          sessionStorage.setItem("nombre", nombre );
+          sessionStorage.setItem("edad", edad);
+          location.href='Eje2b.html'
+      }
+    </script>
+  </head>
+  <body>
+
+    Nombre: <input type="text" id="inNombre" /><br />
+    Edad: <select id="slEdad">
+          <script>
+            for(i=18;i<100;i++){
+              document.write("<option value="+i+" />"+i+"</option>");
+            }
+          </script>
+          </select>
+          <input type="button" value="Enviar" onclick="enviar()"/>
+  </body>
+
+</html>

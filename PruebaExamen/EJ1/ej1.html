@@ -1,0 +1,50 @@
+<!doctype html>
+<!-- Plantilla html/js/css -->
+<html>
+  <head>
+    <title>Titulo</title>
+    <style>
+    table{
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+    </style>
+    <script  type="text/javascript" >
+      var aCartas = [];//Creo un array de dos dimensiones de 5x5
+      for(i=0;i<5;i++)
+        aCartas[i] = [];
+
+      for(i=0;i<5;i++)//Relleno el array con el valor 1 en todos los campos
+        for(j=0;j<5;j++)
+          aCartas[i][j] = 1;
+
+      function resetear(){//Funcion para dejar todo el array con los valores 1 y cambiar el src de todas las cartas a 1.png
+        for(i=0;i<5;i++)
+          for(j=0;j<5;j++){
+            aCartas[i][j] = 1;
+          //  document.getElementById("imCarta"+i+j).src = "Baraja/1.png"
+            document.imgages["imCarta"+i+j].src = "Baraja/1.png";
+          }
+      }
+
+      function avanzar(a, b){//Funcion que suma un valor en la posicion a,b del array y cambia el src de esa carta
+        if (aCartas[a][b] > 9) return;//Si el valor del array en a,b es mayor de 9 (rey) salgo de la funcion
+        aCartas[a][b]++;
+        document.getElementById("imCarta"+a+b).src = "Baraja/"+aCartas[a][b]+".png"
+      }
+
+      //Genero la tabla con las cartas y el boton al final
+      document.write("<table border=1>");
+      for(i=0;i<5;i++){
+        document.write("<tr>");
+        for(j=0;j<5;j++)
+          document.write("<td><img src='Baraja/"+aCartas[i][j]+".png' id='imCarta"+i+j+"' onclick='avanzar("+i+","+j+")'/></td>");
+
+      document.write("</tr>");
+      }
+      document.write("</table>");
+      document.write("<input type='button' value='Reset' onclick='resetear()'/>");
+    </script>
+  </head>
+
+</html>
