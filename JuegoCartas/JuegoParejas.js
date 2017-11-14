@@ -142,13 +142,3 @@ function puntuar(jClicks, jTiempo){
 	document.getElementById("sumaPuntos").innerHTML = pJugada;
 	document.getElementById("puntuacion").innerHTML = iPuntos;
 }
-
-//Esta funcion requiere jQuery
-function leerRanking(){
-	$.getJSON("Ranking.json", function(datos){
-		alert("Dato " + datos["Facil"]);
-		$.each(datos["Facil"]["Nombre"], function(idx, puntos){
-			alert("Puntos: "+ puntos);
-		});
-	});
-}
