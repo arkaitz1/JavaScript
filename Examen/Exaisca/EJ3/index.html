@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" >
+    dFecha = new Date();
+    iDia = dFecha.getDay();
+
+    switch (iDia) {
+      case 1:
+        sFecha = "LUNES";
+        break;
+      case 2:
+        sFecha = "MARTES";
+        break;
+      case 3:
+        sFecha = "MIERCOLES";
+        break;
+      case 4:
+        sFecha = "JUEVES";
+        break;
+      case 5:
+        sFecha = "VIERNES";
+        break;
+      case 6:
+        sFecha = "SABADO";
+        break;
+      case 7:
+        sFecha = "DOMINGO";
+        break;
+      default:
+        sFecha = " ";
+
+    }
+
+    for(i=0;i<sFecha.length;i++){//Creamos un for que recorra desde el 0 hasta el tamaño del string
+        iLetra = sFecha.charAt(i);//Obtenemos la letra que corresponde conla posicion de la i
+        iLetra = iLetra.toLowerCase();
+        if((iLetra < 'a' || iLetra > 'z') && iLetra != ' ')
+            iLetra = "blanco";
+        if(iLetra == ' ') iLetra = "vacio";//En caso de tener espacios pondremos la imagen vacio
+          document.write("<img id='letra"+i+"' src='Letras/"+iLetra+".gif' onclick='blanco("+i+")' />");
+      }
+
+    function blanco(pos){
+      if (document.images["letra"+pos].src.replace(/^.*[\\\/]/, '') == "Blanco.gif")
+        alert("La letra ya esta en blanco");
+      else
+        document.images["letra"+pos].src = "Letras/Blanco.gif";
+    }
+
+    </script>
+
+    <title>Pruebas</title>
+	</head>
+	<body>
+
+	</body>
+</html>

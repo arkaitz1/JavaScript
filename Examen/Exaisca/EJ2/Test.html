@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ2 Test</title>
+	</head>
+	<body>
+
+<style>
+  table{
+    margin: 0 auto;
+  }
+  #dBoton{
+    margin: 0 auto;
+    width: 200px;
+  }
+  </style>
+    <script src="Preguntas.js" type="text/javascript" ></script>
+    <script type="text/javascript" >
+
+    for(i=0;i<aPreguntas.length;i++){
+      document.write("<table border='1'>");
+        document.write("<tr><td>"+(i+1)+"</td><td>"+aPreguntas[i]+"</td></tr>");
+        for(j=0;j<aRespuestas[i].length;j++){
+          document.write("<tr>")
+          document.write("<td><input type='radio' name='nPregunta"+(i+1)+"' id='idPregunta"+(i+1)+"' value='"+j+"'/></td>");
+          document.write("<td>"+aRespuestas[i][j]+"</td>");
+          document.write("</tr>")
+        }
+      document.write("<table><br />");
+
+    }
+
+    document.write("<div id='dBoton'><input id='bCorregir' type='button' value='corregir' onclick='corregir()'' /></div>");
+
+    function corregir(){
+      var res= "";
+      for(i=0;i<aPreguntas.length;i++){
+       rPregunta = document.getElementsByName('nPregunta'+(i+1));
+        for(var j=0;j<rPregunta.length;j++){
+            if(rPregunta[j].checked)
+                res+=rPregunta[j].value;
+        }
+      }
+      sessionStorage.setItem("Respuestas", res);
+      location.href="Resultado.html";
+    }
+    </script>
+	</body>
+</html>

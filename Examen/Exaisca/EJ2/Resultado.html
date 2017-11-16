@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <script src="Preguntas.js" type="text/javascript" ></script>
+    <style>
+      table{
+        margin: 0 auto;
+      }
+      #dResultado{
+        border: solid 1px;
+        margin: 0 auto;
+        width:200px;
+      }
+      </style>
+    <title>Pruebas</title>
+	</head>
+	<body>
+    <script type="text/javascript" >
+      var sCorrectas = "";
+      for(i=0;i<aPreguntas.length;i++){
+        document.write("<table border='1'>");
+          document.write("<tr><td>"+(i+1)+"</td><td>"+aPreguntas[i]+"</td></tr>");
+          for(j=0;j<aRespuestas[i].length;j++){
+            if(j==aSoluciones[i]){
+              sCorrectas += j;
+              document.write("<tr>")
+              document.write("<td> </td>");
+              document.write("<td>"+aRespuestas[i][j]+"</td>");
+              document.write("</tr>")
+            }
+          }
+      document.write("<table><br />");
+    }
+      var res = 0;
+      sRespondidas = sessionStorage.getItem("Respuestas");
+      for(i=0;i<aSoluciones.length;i++){
+        if (sRespondidas[i] == aSoluciones[i])
+          res += 4;
+        else
+          res--;
+      }
+      document.write("<div id='dResultado' >Resultado= "+res+"</div>");
+
+    </script>
+
+	</body>
+</html>
