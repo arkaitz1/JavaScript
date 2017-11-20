@@ -1,22 +1,41 @@
-var dificultad = (sessionStorage.Dificultad == undefined) ? 1 : sessionStorage.Dificultad;
-switch (dificultad) {
-	case "1":N = 2;M = 4;
-		break;
-	case "2":N = 3;M = 6;
-		break;
-	case "3":N = 4;M = 8;
-		break;
-	case "4":N = 5;M = 12;
-		break;
-	default:N = 2;M = 4;
+const JUEGO_NORMAL = "0";
+const JUEGO_CONTRARELOJ = "1";
+const DIFICULTAD_FACIL = "1";
+const DIFICULTAD_MEDIO = "2"
+const DIFICULTAD_DIFICIL = "3";
+
+var sDificultad = (sessionStorage.Dificultad == undefined) ? DIFICULTAD_FACIL : sessionStorage.Dificultad;
+var modoJuego = (sessionStorage.ModoJuego != undefined) ? sessionStorage.ModoJuego : JUEGO_NORMAL;
+
+if(modoJuego == JUEGO_NORMAL){
+	switch (sDificultad) {
+		case DIFICULTAD_FACIL:N = 2;M = 4;
+			break;
+		case DIFICULTAD_MEDIO:N = 3;M = 6;
+			break;
+		case DIFICULTAD_DIFICIL:N = 4;M = 8;
+			break;
+		default:N = 2;M = 4;
+	}
+	var nClicks = N*M*4;
+	var nTiempo = N*M*10;
+}else{
+	var nTiempo = 100;
+	var nClicks = 0;
+	var N = 2;
+	var M = 4;
+
 }
-var nClicks = N*M*3;
-var nTiempo = N*M*15;
-var aTabla = tablaCartas(N,M);
-var idInterval = setInterval(cuentaAtras, 1000);
 
-
-
+var aTabla = CrearTablaCartas(N,M);
+arrayBoleanos();
+var aVolteadas;
+var icarta1;
+var icarta2;
+var itTiempo = setInterval(cuentaAtras, 1000);
+var oPuntos = (localStorage.Puntos != undefined) ? JSON.parse(localStorage.Puntos) : JSON.parse(tablaPuntos());
+var puntos = JSON.parse(tablaPuntos());
+var nJugada = 0;
 var aCarta1 = [0,0];
 var aCarta2 = [0,0];
 var bTerminado = false;
@@ -25,84 +44,229 @@ var iPuntos = 0;
 var nClicksJugada = 0;
 var tJugada = 0;
 
-//Cartas Isaac Ver 1.0
-function tablaCartas(N,M, desordenar = true){
-	var aTemp = [];
-	var aTabla = [];
-	var cont = 1;
-	for(i=0;i<N*M;i++){
-		aTemp[i] = ++cont;
-		if (cont>(N*M)/2) cont = 1;
-	}
-	if(desordenar)
-		aTemp = aTemp.sort(function() {return Math.random() - 0.5});
-	for(i=0;i<N;i++)
-		aTabla[i] = aTemp.slice(i*M,(i*M)+M);
-	return aTabla;
+function cambiarModoJuego(sModo){
+	sModo = sModo.toString();
+	if(sModo == sessionStorage.ModoJuego) return;
+	sessionStorage.setItem("ModoJuego", sModo);
+	location.reload(true);
 }
 
-
-function tablaCartas2 (n,m){
-	var aArray = new Array(n);
-	for(i = 0; i < n; i++) aArray[i] = new Array(m);
-
-	for (i=0;i<n;i++)
-		for(j=0;j<m;j++){
-			do{
-				cont = 0;
-				num = Math.ceil(Math.random()*((n*m)/2));
-				for(f=0;f<n;f++)
-					for(g=0;g<m;g++)
-						if(aArray[f][g] == num) cont++;
-			}while (!(cont < 2))
-			aArray[i][j] = num;
-		}
-
-	return aArray;
+function arrayBoleanos(){
+	aVolteadas = new Array(N);
+	for(h=0;h<N;h++)
+		aVolteadas[h] = new Array(M);
+	for(v=0;v<N;v++)
+		for(z=0;z<M;z++)
+			aVolteadas[v][z] = false;
+	iCarta1 = "";
+	iCarta2 = "";
 }
 
 function Voltear (i, j){
-	if(bTerminado) return;
-
-	finClicks();
+	if(bTerminado) return;//Si la partida esta terminada salgo de la funcion
+	if(aVolteadas[i][j]) return;//Si hago click sobre una carta ya volteada salgo de la funcion
+	if(modoJuego == JUEGO_NORMAL)	finClicks();
 	nClicksJugada++;
-	if(!aCarta1[0]) aCarta1 = [aTabla[i][j],i+""+j];
-	else if(!aCarta2[0]) aCarta2 = [aTabla[i][j],i+""+j];
-	else{
-		//caso en el q las dos estan volteadas
-		document.getElementById("imCarta"+aCarta1[1]).src = "img/0.png";
-		document.getElementById("imCarta"+aCarta2[1]).src = "img/0.png";
-		aCarta1[0] = 0;
-		aCarta2[0] = 0;
-		Voltear(i,j);
+	if(iCarta2 != ""){//En caso de ya tener dos cartas voletadas limpio las posiciones
+		iCarta1 = "";
+		iCarta2 = "";
 	}
-	document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".png";
-	if(aCarta1[0] == aCarta2[0]){
-		aCarta1[0] = 0;
-		aCarta2[0] = 0;
-		iEmparejadas++;
-		puntuar(nClicksJugada, tJugada);
-		tJugada = 0;
-		nClicksJugada = 0;
+	aVolteadas[i][j] = true;//Cambio el estado de la carta a volteada
+	redibujarCartas();//Redibujo la tabla con el estado actual de las cartas
+	if(iCarta1 == "") iCarta1= i+""+j;//Si es la primera carta guardo su posicion
+	else iCarta2= i+""+j;//Si no guardo la de la segunda carta
+
+	if(iCarta2 != ""){//Si la segunda carta tiene una posicion compruebo si las dos cartas son la misma
+		if(aTabla[iCarta1.charAt(0)][iCarta1.charAt(1)] != aTabla[iCarta2.charAt(0)][iCarta2.charAt(1)]){//si no son la misma cambio sus estados a no volteadas
+			aVolteadas[iCarta1.charAt(0)][iCarta1.charAt(1)] = false;
+			aVolteadas[iCarta2.charAt(0)][iCarta2.charAt(1)] = false;
+		}else {
+			iEmparejadas++;
+			puntuar(nClicksJugada, tJugada);
+			tJugada = 0;
+			nClicksJugada = 0;
+		}
+		if(iEmparejadas >= (N*M)/2) partidaTerminada();
 	}
-	if(iEmparejadas >= (N*M)/2) partidaTerminada();
 }
 
+function redibujarCartas(){
+	for (i = 0;i<N;i++)
+		for(j=0;j<M;j++)
+			if(aVolteadas[i][j]){
+				document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".jpg";
+			}else{
+				document.getElementById("imCarta"+i+j).src = "img/0.jpg";
+			}
+}
+
+
+
+
+function pintarTabla(){
+		var sTabla = "";
+		sTabla += "<table class='fieltro centrar-obj borde-tabla'>";
+		for(i=0;i<aTabla.length;i++){
+			sTabla += "<tr>";
+			for(f=0;f<aTabla[i].length;f++)
+			 sTabla += "<td><img id='imCarta"+i+f+"'src='img/0.jpg' onclick='Voltear("+i+","+f+")' /></td>";
+			sTabla += "</tr>";
+		}
+		sTabla += "</table>";
+		document.getElementById('tablaCartas').innerHTML = sTabla;
+		select = document.getElementById("sDificultad");
+		for (i=0;i<select.length;i++)
+			if (select[i].value == sDificultad)
+				select[i].selected = true;
+
+}
+
+function resetParametros(bTotal = false){
+	if(bTotal)nJugada = 0;
+	if(modoJuego == JUEGO_CONTRARELOJ){
+		N=2;M=4;
+		if(nJugada == 1){N=3;M=6}
+		else if(nJugada > 1){N=4;M=8}
+	}
+	aCarta1 = [0,0];
+	aCarta2 = [0,0];
+	bTerminado = false;
+	iEmparejadas = 0;
+	nClicksJugada = 0;
+	aTabla = CrearTablaCartas(N,M);
+	arrayBoleanos();
+	pintarTabla();
+	if(bTotal){
+		iPuntos = 0;
+		nClicks = N*M*4;
+		nTiempo = N*M*10;
+		clearTimeout(itTiempo);
+		itTiempo = setInterval(cuentaAtras, 1000);
+		if(modoJuego == JUEGO_NORMAL){
+			document.getElementById('vClicks').innerHTML = nClicks;
+			document.getElementById('vClicks').style.color = "white";
+		}
+		if(modoJuego == JUEGO_CONTRARELOJ)document.getElementById('dClicks').innerHTML = "Jugada Nº"+nJugada;
+		document.getElementById('sumaPuntos').innerHTML = 0;
+		document.getElementById('bonoTiempo').innerHTML = 0;
+		document.getElementById('bonoClicks').innerHTML = 0;
+		document.getElementById('puntuacion').innerHTML = 0;
+		document.getElementById('error').innerHTML = "";
+		document.getElementById('vContador').style.color = "white";
+
+	}
+}
 function partidaTerminada(){
-	document.getElementById('error').innerHTML = "Partida terminada";
-	bTerminado = true;
-	clearTimeout(idInterval);
-	iPuntos += (nTiempo*15)+(nClicks*25);
-	document.getElementById("bonoTiempo").innerHTML = nTiempo*15;
-	document.getElementById("bonoClicks").innerHTML = nClicks*25;
-	document.getElementById("puntuacion").innerHTML = iPuntos;
+	if(modoJuego == JUEGO_CONTRARELOJ){
+		nJugada++;
+		resetParametros();
+		document.getElementById('dClicks').innerHTML = "Jugada Nº"+nJugada;
+	}else{
+		document.getElementById('error').innerHTML = "Partida terminada";
+		bTerminado = true;
+		clearTimeout(itTiempo);
+		iPuntos += (nTiempo*15)+(nClicks*25);
+		document.getElementById("bonoTiempo").innerHTML = nTiempo*15;
+		document.getElementById("bonoClicks").innerHTML = nClicks*25;
+		document.getElementById("puntuacion").innerHTML = iPuntos;
+
+		escribirPuntos();
+}
+}
+
+function escribirPuntos(){
+
+		if(modoJuego == JUEGO_CONTRARELOJ)
+			var aPuntos = oPuntos.Reloj;
+		else{
+			if(sDificultad == DIFICULTAD_FACIL)
+				var aPuntos = oPuntos.Facil;
+			else if(sDificultad == DIFICULTAD_MEDIO)
+				var aPuntos = oPuntos.Media;
+			else if(sDificultad == DIFICULTAD_DIFICIL)
+				var aPuntos = oPuntos.Dificil;
+		}
+
+	for(i=0;i<aPuntos.length;i++){
+				if(aPuntos[i].Puntos<=iPuntos){
+					var sJugador = prompt('Ingrese su nombre:','Nombre');
+
+					for(j=aPuntos.length-2;j>=i;j--){
+						aPuntos[j+1].Nombre = aPuntos[j].Nombre;
+						aPuntos[j+1].Puntos = aPuntos[j].Puntos;
+					}
+					aPuntos[i].Puntos = iPuntos;
+					aPuntos[i].Nombre = sJugador;
+					break;
+				}
+	}
+	localStorage.Puntos = JSON.stringify(oPuntos);
+	pintarPuntos();
+
+}
+
+function pintarPuntos(){
+	if(modoJuego == JUEGO_CONTRARELOJ)
+		var aPuntos = oPuntos.Reloj;
+	else{
+		if(sDificultad == DIFICULTAD_FACIL)
+			var aPuntos = oPuntos.Facil;
+		else if(sDificultad == DIFICULTAD_MEDIO)
+			var aPuntos = oPuntos.Media;
+		else if(sDificultad == DIFICULTAD_DIFICIL)
+			var aPuntos = oPuntos.Dificil;
+	}
+
+	var sPintarPuntos = "";
+	sPintarPuntos += "<table>";
+		sPintarPuntos += "<tr><td>Pos</td><td>Nombre</td><td>Puntos</td></tr>";
+				for (i=0;i<aPuntos.length;i++)
+				sPintarPuntos += "<tr><td>"+(i+1)+"</td><td>"+aPuntos[i].Nombre+"</td><td>"+aPuntos[i].Puntos+"</td></tr>";
+	sPintarPuntos += "</table>";
+	document.getElementById('ranking').innerHTML = sPintarPuntos;
+}
+function tablaPuntos(){
+
+	var sPuntos = '{'+
+	'"Facil":['+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"}'+
+	'],'+
+	'"Media":['+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"}'+
+	'],'+
+	'"Dificil":['+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"}'+
+	'],'+
+	'"Reloj":['+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"},'+
+	  '{"Nombre":"Unnamed", "Puntos":"0"}'+
+	']'+
+	'}';
+
+	sessionStorage.setItem("Puntos", sPuntos);
+	return sPuntos;
 }
 
 function cuentaAtras(){
 	tJugada++;
 	nTiempo--;
 	if (nTiempo <= 0){
-		clearTimeout (idInterval);
+		clearTimeout (itTiempo);
 		finTiempo();
 	}
 	seg = Math.floor(nTiempo%60);
@@ -117,6 +281,7 @@ function finTiempo(){
 	bFallo = true;
 	document.getElementById('vContador').style.color = "red";
 	document.getElementById('error').innerHTML = "Tiempo terminado";
+	if (modoJuego == JUEGO_CONTRARELOJ) escribirPuntos();
 
 }
 function finClicks(){
@@ -125,11 +290,12 @@ function finClicks(){
 			document.getElementById('error').innerHTML = "Has superado el maximo de clicks";
 			document.getElementById('vClicks').style.color = "red";
 			bTerminado = true;
-			clearTimeout (idInterval);
+			clearTimeout (itTiempo);
 		}
 	document.getElementById('vClicks').innerHTML = nClicks;
 }
-function cmDificultad(){
+function cambiarDificultad(){
+	if(modoJuego == JUEGO_CONTRARELOJ) return;
 	iDificultad = document.getElementById('sDificultad').value;
 	sessionStorage.setItem("Dificultad", iDificultad);
 	location.reload(true);
@@ -142,3 +308,73 @@ function puntuar(jClicks, jTiempo){
 	document.getElementById("sumaPuntos").innerHTML = pJugada;
 	document.getElementById("puntuacion").innerHTML = iPuntos;
 }
+
+
+
+
+
+
+/******************************************
+ * FUNCIONES USADAS DURANTE EL DESARROLLO *
+ ******************************************/
+
+ function Voltear_desarrolo (i, j){
+ 	if(bTerminado) return;
+
+ 	if(modoJuego == JUEGO_NORMAL)	finClicks();
+ 	nClicksJugada++;
+ 	if(!aCarta1[0]) aCarta1 = [aTabla[i][j],i+""+j];
+ 	else if(!aCarta2[0]) aCarta2 = [aTabla[i][j],i+""+j];
+ 	else{
+ 		document.getElementById("imCarta"+aCarta1[1]).src = "img/0.jpg";
+ 		document.getElementById("imCarta"+aCarta2[1]).src = "img/0.jpg";
+ 		aCarta1[0] = 0;
+ 		aCarta2[0] = 0;
+ 		Voltear(i,j);
+ 	}
+ 	document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".jpg";
+ 	if(aCarta1[0] == aCarta2[0]){
+ 		aCarta1[0] = 0;
+ 		aCarta2[0] = 0;
+ 		iEmparejadas++;
+ 		puntuar(nClicksJugada, tJugada);
+ 		tJugada = 0;
+ 		nClicksJugada = 0;
+ 	}
+ 	if(iEmparejadas >= (N*M)/2) partidaTerminada();
+ }
+
+ function tablaCartas_desarrollo(N,M, desordenar = true){
+ 	var aTemp = [];
+ 	var aTabla = [];
+ 	var cont = 1;
+ 	for(i=0;i<N*M;i++){
+ 		aTemp[i] = ++cont;
+ 		if (cont>(N*M)/2) cont = 1;
+ 	}
+ 	if(desordenar)
+ 		aTemp = aTemp.sort(function() {return Math.random() - 0.5});
+ 	for(i=0;i<N;i++)
+ 		aTabla[i] = aTemp.slice(i*M,(i*M)+M);
+ 	return aTabla;
+ }
+
+
+ function tablaCartas2_desarrollo (n,m){
+ 	var aArray = new Array(n);
+ 	for(i = 0; i < n; i++) aArray[i] = new Array(m);
+
+ 	for (i=0;i<n;i++)
+ 		for(j=0;j<m;j++){
+ 			do{
+ 				cont = 0;
+ 				num = Math.ceil(Math.random()*((n*m)/2));
+ 				for(f=0;f<n;f++)
+ 					for(g=0;g<m;g++)
+ 						if(aArray[f][g] == num) cont++;
+ 			}while (!(cont < 2))
+ 			aArray[i][j] = num;
+ 		}
+
+ 	return aArray;
+ }

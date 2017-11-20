@@ -1,57 +1,29 @@
 
-  img{
-    width: 50px;
-    cursor:pointer;
+body {
+  color: white;
+  background-image: url(img/Goku.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+}
+  tr td{padding: 5px;}
+  img{width: 100px;height: 130px;cursor:pointer;}
+  header{text-align: center; background-color: #A49E97;}
+  .borde{border: 1px #000 solid; }
+  .borde-tabla{border-radius: 20px; padding: 20px;}
+  .pad{padding: 10px;}
+  .centrar{text-align: center;}
+  .centrar-obj{margin: auto;}
+  .separar-arriva{margin-top: 10px;}
+  .grana{background-color: #8A0829;}
+  .fieltro{
+    background-image: url(img/fieltro-verde.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
   }
-  header{
-    padding: 0px;
-    border: green 5px solid;
-    width: 100%;
-    overflow: hidden;
-
-  }
-  #error{
-    color:red;
-    text-align: center;
-  }
-  #dContador, #dClicks{
-    text-align: center;
-  }
-  #datos{
-    margin: 0px;
-    padding: 0px;
-    width: 30%;
-    float:left;
-    border: green 5px solid;
-
-  }
-  #avisos{
-    margin: 0px;
-    padding: 0px;
-    width: 30%;
-    float:left;
-    border: green 5px solid;
-
-  }
-  #titulo{
-    margin: 0px;
-    padding: 0px;
-    width: 38.5%;
-    float:left;
-    text-align: center;
-    font-size: 30px;
-  }
-  #ranking{
-    float:left;
-  }
-  table{
-     
-     margin: auto;
-     border-collapse: collapse;
-     border: green 5px solid;
-     margin-top:10px;
-  }
-  tr td{
-    border: green 2px solid;
-    padding: 5px;
-  }
+  #error{color:red;text-align: center;}

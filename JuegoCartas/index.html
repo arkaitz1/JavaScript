@@ -3,182 +3,81 @@
   <head>
     <meta charset="utf-8">
     <title>Juego</title>
-	  <!--script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script-->
-    <script src="funciones.js" type="text/javascript" ></script>
-
-    <style>
-      img{
-        width: 50px;
-        cursor:pointer;
-      }
-      #error{
-        margin-top: 50px;
-        color:red;
-        text-align: center;
-      }
-      #dContador, #dClicks{
-        text-align: center;
-      }
-      table{
-         margin: auto;
-         border-collapse: collapse;
-         border: green 5px solid;
-      }
-      tr td{
-        border: green 2px solid;
-        padding: 5px;
-      }
-    </style>
-
-    <script language="JavaScript">
-    var dificultad = 1;
-
-    switch (dificultad) {
-      case 1:N = 2;M = 4;
-        break;
-      case 2:N = 3;M = 6;
-        break;
-      case 3:N = 4;M = 8;
-        break;
-      case 4:N = 5;M = 12;
-        break;
-      default:N=2; M=2;
-    }
-    var nClicks = N*M*3;
-    var nTiempo = N*M*15;
-    document.write("<div id='error'>&nbsp</div>");
-    document.write("<div id='dContador'>Tiempo: <span id='vContador'>00:00</span></div>");
-    document.write("<div id='dClicks'>Numero de clicks: <span id='vClicks'>"+nClicks+"</span></div>");
-
-
-
-      if (!((N*M)%2)){
-        var aTabla = tablaCartas2(N,M);
-      }
-      else {
-        document.getElementById('error').innerHTML = "No se puede generar una tabla impar";
-      }
-
-      var aCarta1 = [0,0];
-      var aCarta2 = [0,0];
-      var bTerminado = false;
-      var iEmparejadas = 0;
-      var idInterval = setInterval(cuentaAtras, 1000);
-
-      function Voltear (i, j){
-        if(bTerminado) return;
-
-        if(!aCarta1[0]) aCarta1 = [aTabla[i][j],i+""+j];
-        else if(!aCarta2[0]) aCarta2 = [aTabla[i][j],i+""+j];
-        else{
-          //caso en el q las dos estan volteadas
-          document.getElementById("imCarta"+aCarta1[1]).src = "img/0.png";
-          document.getElementById("imCarta"+aCarta2[1]).src = "img/0.png";
-          aCarta1[0] = 0;
-          aCarta2[0] = 0;
-          Voltear(i,j);
-        }
-        document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".png";
-        if(aCarta1[0] == aCarta2[0]){
-          aCarta1[0] = 0;
-          aCarta2[0] = 0;
-          iEmparejadas++;
-        }
-        if(iEmparejadas >= (N*M)/2){
-          document.getElementById('error').innerHTML = "Partida terminada";
-          bTerminado = true;
-        }
-      }
-
-      var aVolteadas = new Array(N);
-      for(h=0;h<N;h++)
-        aVolteadas[h] = new Array(M);
-      for(v=0;v<N;v++)
-        for(z=0;z<M;z++)
-          aVolteadas[v][z] = false;
-      var iCarta1 = "";
-      var iCarta2 = "";
-
-      function Voltear2 (i, j){
-        if(bTerminado) return;//Si la partida esta terminada salgo de la funcion
-        if(aVolteadas[i][j]) return;//Si hago click sobre una carta ya volteada salgo de la funcion
-        finClicks();
-        if(iCarta2 != ""){//En caso de ya tener dos cartas voletadas limpio las posiciones
-          iCarta1 = "";
-          iCarta2 = "";
-        }
-        aVolteadas[i][j] = true;//Cambio el estado de la carta a volteada
-        pintar();//Redibujo la tabla con el estado actual de las cartas
-        if(iCarta1 == "") iCarta1= i+""+j;//Si es la primera carta guardo su posicion
-        else iCarta2= i+""+j;//Si no guardo la de la segunda carta
-
-        if(iCarta2 != ""){//Si la segunda carta tiene una posicion compruebo si las dos cartas son la misma
-          if(aTabla[iCarta1.charAt(0)][iCarta1.charAt(1)] != aTabla[iCarta2.charAt(0)][iCarta2.charAt(1)]){//si no son la misma cambio sus estados a no volteadas
-            aVolteadas[iCarta1.charAt(0)][iCarta1.charAt(1)] = false;
-            aVolteadas[iCarta2.charAt(0)][iCarta2.charAt(1)] = false;
-          }else {
-            iEmparejadas++;
-          }
-          if(iEmparejadas >= (N*M)/2){
-            document.getElementById('error').innerHTML = "Partida terminada";
-            bTerminado = true;
-          }
-        }
-      }
-
-      function pintar(){
-        for (i = 0;i<N;i++)
-          for(j=0;j<M;j++)
-            if(aVolteadas[i][j]){
-              document.getElementById("imCarta"+i+j).src = "img/"+aTabla[i][j]+".png";
-            }else{
-              document.getElementById("imCarta"+i+j).src = "img/0.png";
-            }
-      }
-      function cuentaAtras(){
-        nTiempo--;
-        if (nTiempo <= 0){
-          clearTimeout (idInterval);
-          finTiempo();
-        }
-        seg = Math.floor(nTiempo%60);
-        min = Math.floor(nTiempo/60);
-        if (seg < 10) seg = "0"+seg;
-        sTiempo = min+":"+seg;
-
-        document.getElementById('vContador').innerHTML = sTiempo;
-      }
-      function finTiempo(){
-        bTerminado = true;
-        bFallo = true;
-        document.getElementById('vContador').style.color = "red";
-        document.getElementById('error').innerHTML = "Tiempo terminado";
-
-      }
-      function finClicks(){
-
-        nClicks--;
-        if (nClicks <= 0){
-            document.getElementById('error').innerHTML = "Has superado el maximo de clicks";
-            document.getElementById('vClicks').style.color = "red";
-            bTerminado = true;
-            clearTimeout (idInterval);
-          }
-        document.getElementById('vClicks').innerHTML = nClicks;
-      }
-
-      document.write("<table>");
-      for(i=0;i<aTabla.length;i++){
-        document.write("<tr>");
-        for(f=0;f<aTabla[i].length;f++)
-         document.write("<td><img id='imCarta"+i+f+"'src='img/0.png' onclick='Voltear2("+i+","+f+")' /></td>");
-        document.write("</tr>");
-      }
-      document.write("</table>");
-    </script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/icono.jpg">
+    <link href="css/bootstrap.min.css"  rel="stylesheet" media="screen">
+    <script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script>
+    <script src="JuegoParejas.js" type="text/javascript" ></script>
+    <link rel="stylesheet" type="text/css" href="JuegoParejas.css" media="screen" />
   </head>
   <body>
-
+    <div id="pagina" class="container">
+      <nav class="row pad grana" style="margin-top:10px;">
+        <div class="col-4 centrar">
+          Modo de Juego<br />
+          <input type="button" class="btn btn-warning" id="btNormal" value="Normal" onclick="cambiarModoJuego('0')">
+          <input type="button" class="btn btn-warning" id="btReloj" value="Contra Reloj" onclick="cambiarModoJuego('1')">
+        </div>
+        <div class="col-4 centrar">
+          <br />
+          <input type="button" class="btn btn-success" value="Nuevo Juego" onclick="resetParametros(true)">
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2 centrar">
+          Dificultad
+            <select id="sDificultad" class="form-control" onchange="cambiarDificultad()">
+              <option value="1" >Facil</option>
+              <option value="2" >Medio</option>
+              <option value="3" >Dificil</option>
+            </select>
+        </div>
+        <div class="col-1"></div>
+      </nav>
+      <header class="row" style="margin-top:10px;">
+        <div id="avisos" class="col-4">
+          <div id="error"> </div>
+          <div id="dContador">Tiempo: <span id="vContador">00:00</span></div>
+          <div id="dClicks">Numero de clicks: <span id="vClicks"><script>document.write(nClicks)</script></span></div>
+        </div>
+        <div class="col-3">
+          <br />
+            <script type="text/javascript">
+              if(sessionStorage.usuario != undefined)
+                document.write("Usuario actual: "+sessionStorage.usuario+" <a href='#' onclick='cambiarUsuario()'>Cambiar usuario</a>");
+              else {
+                document.write("<input type='text' id='inUsuario' class='form-control' value='Nombre usuario'>");
+              }
+            </script>
+        </div>
+        <div class="col-1">
+          <br />
+          <input type="button" class="btn btn-primary" value="Cambiar">
+        </div>
+        <div id="datos" class="col-4">
+            Puntos Jugada: <span style="color:green" id="sumaPuntos">0</span><br>
+            Bono por tiempo:<span style="color:green" id="bonoTiempo">0</span><br>
+            Bono por clicks:<span style="color:green" id="bonoClicks">0</span><br>
+            Puntuacion: <span style="color:green" id="puntuacion">0</span>
+        </div>
+      </header>
+      <section class="row separar-arriva">
+        <div id="ranking" class="col-2 grana"></div>
+        <div class="col-8" id="tablaCartas">
+          <script type="text/javascript">
+            pintarTabla();
+            pintarPuntos();
+            if(modoJuego == JUEGO_CONTRARELOJ){
+              document.getElementById('btReloj').classList.add('active');
+              document.getElementById('dClicks').innerHTML = "Jugada Nº0";
+            }else document.getElementById('btNormal').classList.add('active');
+          </script>
+        </div>
+    </section>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

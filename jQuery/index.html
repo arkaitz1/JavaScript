@@ -35,11 +35,12 @@
       }
     </style>
 	  <script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script>
-
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
     <!--script src="funciones.js" type="text/javascript" ></script-->
+
     <script language="JavaScript">
       var N = 4;
-      var nClicks = 4;
+      var nClicks = 40;
       var bTerminado = false;
       var bFallo = false;
       var nTiempo = 500; //segundos:
@@ -108,10 +109,11 @@
           bPosible = true;
 
         if(bPosible){
-          $("imBola"+f+c).hide(500);
-          //document.getElementById("imBola"+f+c).src = "img/n"+aTabla[fCero][cCero]+".gif";
-          $("imBola"+fCero+cCero).show(500);
-        //  document.getElementById("imBola"+fCero+cCero).src = "img/n"+aTabla[f][c]+".gif";
+
+          $("#imBola"+f+c).hide(1500, function(){document.getElementById("imBola"+f+c).src = "img/n"+aTabla[fCero][cCero]+".gif";});
+          document.getElementById("imBola"+fCero+cCero).src = "img/n"+aTabla[f][c]+".gif";
+
+          $("#imBola"+fCero+cCero).show(1500);
           iAux = aTabla[f][c];
           aTabla[f][c] = 0;
           aTabla[fCero][cCero] = iAux;
@@ -138,7 +140,9 @@
       for(i=0;i<aTabla.length;i++){
         document.write("<tr>");
         for(f=0;f<aTabla[i].length;f++){
-          document.write("<td><img id='imBola"+i+f+"'src='img/n"+aTabla[i][f]+".gif' onclick='Cambiar("+i+","+f+")' /></td>");
+          document.write("<td><center><img id='imBola"+i+f+"'src='img/n"+aTabla[i][f]+".gif' onclick='Cambiar("+i+","+f+")' /></center></td>");
+          if(aTabla[i][f] == 0)
+            $("#imBola"+i+f).hide();
         }
         document.write("</tr>");
       }
