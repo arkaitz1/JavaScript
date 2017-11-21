@@ -10,11 +10,11 @@
       if(aArticulos[i].id == sessionStorage.IdComprando)
         oProducto = aArticulos[i];
 
-    aCompra = (sessionStorage.Compra =! undefined) ? JSON.parse(sessionStorage.Compra) : [];
+    aCompra = (sessionStorage.Compra != undefined) ? JSON.parse(sessionStorage.Compra) : [];
 
     function comprar(){
       pos = (aCompra.length==undefined) ? 0 : aCompra.length;
-      aCompra[pos] = {"id":oProducto.id, "cant":inCantidad.value};
+      aCompra[oProducto.id] = document.getElementById('inCantidad').value;
       sessionStorage.Compra=JSON.stringify(aCompra);
       location.href = "carrito.html";
     }
@@ -29,7 +29,7 @@
 
     <script>
       iFoto.src = oProducto.src();
-      inCantidad.value = (sessionStorage.Compra =! undefined) ? aCompra[oProducto.id] : 0;
+      inCantidad.value = (sessionStorage.Compra != undefined) ? aCompra[oProducto.id] : 0;
     </script>
   </body>
 </html>

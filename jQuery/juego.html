@@ -35,7 +35,7 @@
       }
     </style>
 	  <script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script>
-        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script src="js/jquery-3.2.1.js" charset="utf-8"></script>
     <!--script src="funciones.js" type="text/javascript" ></script-->
 
     <script language="JavaScript">
@@ -110,7 +110,9 @@
 
         if(bPosible){
 
-          $("#imBola"+f+c).hide(1500, function(){document.getElementById("imBola"+f+c).src = "img/n"+aTabla[fCero][cCero]+".gif";});
+        //  $("#imBola"+f+c).hide(1500, function(){document.getElementById("imBola"+f+c).src = "img/n"+aTabla[fCero][cCero]+".gif";});
+          $("#imBola"+f+c).hide(1500);
+          document.getElementById("imBola"+f+c).src = "img/n"+aTabla[fCero][cCero]+".gif";
           document.getElementById("imBola"+fCero+cCero).src = "img/n"+aTabla[f][c]+".gif";
 
           $("#imBola"+fCero+cCero).show(1500);

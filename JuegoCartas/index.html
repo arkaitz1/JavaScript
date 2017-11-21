@@ -6,12 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/icono.jpg">
-    <link href="css/bootstrap.min.css"  rel="stylesheet" media="screen">
+    <link href="bootstrap.min.css"  rel="stylesheet" media="screen">
     <script src="http://88.2.227.247/funciones.js" type="text/javascript" ></script>
     <script src="JuegoParejas.js" type="text/javascript" ></script>
     <link rel="stylesheet" type="text/css" href="JuegoParejas.css" media="screen" />
   </head>
   <body>
+  </div>
     <div id="pagina" class="container">
       <nav class="row pad grana" style="margin-top:10px;">
         <div class="col-4 centrar">
@@ -40,19 +41,9 @@
           <div id="dContador">Tiempo: <span id="vContador">00:00</span></div>
           <div id="dClicks">Numero de clicks: <span id="vClicks"><script>document.write(nClicks)</script></span></div>
         </div>
-        <div class="col-3">
-          <br />
-            <script type="text/javascript">
-              if(sessionStorage.usuario != undefined)
-                document.write("Usuario actual: "+sessionStorage.usuario+" <a href='#' onclick='cambiarUsuario()'>Cambiar usuario</a>");
-              else {
-                document.write("<input type='text' id='inUsuario' class='form-control' value='Nombre usuario'>");
-              }
-            </script>
-        </div>
-        <div class="col-1">
-          <br />
-          <input type="button" class="btn btn-primary" value="Cambiar">
+        <div class="col-4">
+          <h2>Encuentra las parejas</h2>
+          <h5>Powered by Isaac</h5>
         </div>
         <div id="datos" class="col-4">
             Puntos Jugada: <span style="color:green" id="sumaPuntos">0</span><br>
@@ -75,9 +66,5 @@
         </div>
     </section>
     </div>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

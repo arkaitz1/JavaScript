@@ -4,10 +4,11 @@ const DIFICULTAD_FACIL = "1";
 const DIFICULTAD_MEDIO = "2"
 const DIFICULTAD_DIFICIL = "3";
 
+//Establezo el modo de juego y la dificultad
 var sDificultad = (sessionStorage.Dificultad == undefined) ? DIFICULTAD_FACIL : sessionStorage.Dificultad;
 var modoJuego = (sessionStorage.ModoJuego != undefined) ? sessionStorage.ModoJuego : JUEGO_NORMAL;
 
-if(modoJuego == JUEGO_NORMAL){
+if(modoJuego == JUEGO_NORMAL){//Calculo el tamaño, tiempo y clicks dependiendo de la dificultad o el modo de juego
 	switch (sDificultad) {
 		case DIFICULTAD_FACIL:N = 2;M = 4;
 			break;
@@ -26,7 +27,7 @@ if(modoJuego == JUEGO_NORMAL){
 	var M = 4;
 
 }
-
+//Genero las tabla y declaro las variables que se van a usar.
 var aTabla = CrearTablaCartas(N,M);
 arrayBoleanos();
 var aVolteadas;
@@ -43,6 +44,8 @@ var iEmparejadas = 0;
 var iPuntos = 0;
 var nClicksJugada = 0;
 var tJugada = 0;
+var bClickear = true;
+
 
 function cambiarModoJuego(sModo){
 	sModo = sModo.toString();
@@ -63,8 +66,7 @@ function arrayBoleanos(){
 }
 
 function Voltear (i, j){
-	if(bTerminado) return;//Si la partida esta terminada salgo de la funcion
-	if(aVolteadas[i][j]) return;//Si hago click sobre una carta ya volteada salgo de la funcion
+	if(!bClickear || bTerminado || aVolteadas[i][j]) return //Si no es posible hacer click, si la partida esta terminada o la carta ya esta girada salgo de la funcion
 	if(modoJuego == JUEGO_NORMAL)	finClicks();
 	nClicksJugada++;
 	if(iCarta2 != ""){//En caso de ya tener dos cartas voletadas limpio las posiciones
@@ -80,13 +82,17 @@ function Voltear (i, j){
 		if(aTabla[iCarta1.charAt(0)][iCarta1.charAt(1)] != aTabla[iCarta2.charAt(0)][iCarta2.charAt(1)]){//si no son la misma cambio sus estados a no volteadas
 			aVolteadas[iCarta1.charAt(0)][iCarta1.charAt(1)] = false;
 			aVolteadas[iCarta2.charAt(0)][iCarta2.charAt(1)] = false;
-		}else {
+			bClickear = false;//Quito la opcion de poder clickear hasta que se redibujen las cartas
+			setTimeout("redibujarCartas()",1000);
+		}else {//Si la pareja coincide cuento una pareja mas y calculo las puntuaciones de la jugada
 			iEmparejadas++;
 			puntuar(nClicksJugada, tJugada);
 			tJugada = 0;
 			nClicksJugada = 0;
 		}
+
 		if(iEmparejadas >= (N*M)/2) partidaTerminada();
+
 	}
 }
 
@@ -98,6 +104,7 @@ function redibujarCartas(){
 			}else{
 				document.getElementById("imCarta"+i+j).src = "img/0.jpg";
 			}
+		bClickear = true;
 }
 
 
@@ -121,7 +128,7 @@ function pintarTabla(){
 
 }
 
-function resetParametros(bTotal = false){
+function resetParametros(bTotal = false){//funcion para resetear las variables cuando hacemos un nuevo juego o cambiamos la dificultada/modo de juego
 	if(bTotal)nJugada = 0;
 	if(modoJuego == JUEGO_CONTRARELOJ){
 		N=2;M=4;
@@ -136,6 +143,7 @@ function resetParametros(bTotal = false){
 	aTabla = CrearTablaCartas(N,M);
 	arrayBoleanos();
 	pintarTabla();
+	bClickear = true;
 	if(bTotal){
 		iPuntos = 0;
 		nClicks = N*M*4;
@@ -156,8 +164,8 @@ function resetParametros(bTotal = false){
 
 	}
 }
-function partidaTerminada(){
-	if(modoJuego == JUEGO_CONTRARELOJ){
+function partidaTerminada(){//Funcion para cuando se termina la partida (calcular puntos, detener reloj etc..)
+	if(modoJuego == JUEGO_CONTRARELOJ){//Si el modo de juego es contra reloj al temrminar una tabla creo otra hasta que se agote el tiempo
 		nJugada++;
 		resetParametros();
 		document.getElementById('dClicks').innerHTML = "Jugada Nº"+nJugada;
@@ -169,13 +177,12 @@ function partidaTerminada(){
 		document.getElementById("bonoTiempo").innerHTML = nTiempo*15;
 		document.getElementById("bonoClicks").innerHTML = nClicks*25;
 		document.getElementById("puntuacion").innerHTML = iPuntos;
+		setTimeout("escribirPuntos()",100);//Este pequeño timeout lo hago para q el prompt que pide el nombre no salga antes de tiempo (no se veia la ultima carta girada)
 
-		escribirPuntos();
 }
 }
 
-function escribirPuntos(){
-
+function escribirPuntos(){//Compruebo si la puntuacion esta entre los 5 mejores de su categoria y de ser asi guardo
 		if(modoJuego == JUEGO_CONTRARELOJ)
 			var aPuntos = oPuntos.Reloj;
 		else{
@@ -205,7 +212,7 @@ function escribirPuntos(){
 
 }
 
-function pintarPuntos(){
+function pintarPuntos(){//Funcion para rescribir la tabla de puntuaciones
 	if(modoJuego == JUEGO_CONTRARELOJ)
 		var aPuntos = oPuntos.Reloj;
 	else{
@@ -225,7 +232,7 @@ function pintarPuntos(){
 	sPintarPuntos += "</table>";
 	document.getElementById('ranking').innerHTML = sPintarPuntos;
 }
-function tablaPuntos(){
+function tablaPuntos(){//Genero un string con formato de JSON para las puntuaciones (esto solo se hace si en no hay puntuaciones en localStorage)
 
 	var sPuntos = '{'+
 	'"Facil":['+
@@ -276,6 +283,7 @@ function cuentaAtras(){
 
 	document.getElementById('vContador').innerHTML = sTiempo;
 }
+
 function finTiempo(){
 	bTerminado = true;
 	bFallo = true;
@@ -284,6 +292,7 @@ function finTiempo(){
 	if (modoJuego == JUEGO_CONTRARELOJ) escribirPuntos();
 
 }
+
 function finClicks(){
 	nClicks--;
 	if (nClicks <= 0){
@@ -294,7 +303,8 @@ function finClicks(){
 		}
 	document.getElementById('vClicks').innerHTML = nClicks;
 }
-function cambiarDificultad(){
+
+function cambiarDificultad(){//Funcion q recarga la pagina al cambiar la dificultad
 	if(modoJuego == JUEGO_CONTRARELOJ) return;
 	iDificultad = document.getElementById('sDificultad').value;
 	sessionStorage.setItem("Dificultad", iDificultad);
@@ -312,13 +322,11 @@ function puntuar(jClicks, jTiempo){
 
 
 
-
-
 /******************************************
  * FUNCIONES USADAS DURANTE EL DESARROLLO *
  ******************************************/
 
- function Voltear_desarrolo (i, j){
+ function Voltear_desarrolo (i, j){//funcion para girar las cartas sin array de boleanos
  	if(bTerminado) return;
 
  	if(modoJuego == JUEGO_NORMAL)	finClicks();
@@ -344,7 +352,7 @@ function puntuar(jClicks, jTiempo){
  	if(iEmparejadas >= (N*M)/2) partidaTerminada();
  }
 
- function tablaCartas_desarrollo(N,M, desordenar = true){
+ function tablaCartas_desarrollo(N,M, desordenar = true){//funcion para generar la tabla de cartas con la posibilidad de que las cartas este ordenadas para las pruebas
  	var aTemp = [];
  	var aTabla = [];
  	var cont = 1;

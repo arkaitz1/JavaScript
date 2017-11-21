@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pajaros</title>
+    <script src="js/jquery-3.2.1.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    var aEspecies=new Array ('Perro' , 'Lince' , 'Colibrí','Jilguero', 'Elefante', 'Buitre', 'Canario', 'Ballena','Alimoche');
+    var aMamifero=new Array (true,true,false,false,true,false,false,true,false);
+    for(i=0;i<aEspecies.length;i++){
+      clase = (aMamifero[i]) ? "mamifero" : "pajaro";
+        document.write("<span class='"+clase+"'>"+aEspecies[i]+"</span> ");
+    }
+
+    $(document).ready(resaltar);
+
+    function resaltar(){
+      $("#btMamiferos").click(resaltarMamiferos);
+      $("#btPajaros").click(resaltarPajaros);
+    }
+    function resaltarMamiferos(){
+      $(".mamifero").css("background-color","yellow");
+    }
+    function resaltarPajaros(){
+      $(".pajaro").css("background-color","green");
+    }
+    </script>
+  </head>
+  <body>
+    <div>
+      <span class="pajaro" >Gaviota</span> <span class="mamifero" >Tigre</span> <span class="pajaro">Colibri</span>
+      <span class="pajaro">Gaviota</span> <span class="mamifero" >Leon</span> <span class="pajaro">Buitre</span>
+      <span class="mamifero" >Gato</span>
+    </div>
+    <button type="button" id="btMamiferos">Mamiferos</button>
+    <button type="button" id="btPajaros">Pajarors</button>
+  </body>
+</html>
