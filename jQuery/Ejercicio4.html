@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Home</title>
+		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+
+
+
+		<script type="text/javascript" >
+					var x = $(document);
+					x.ready(Botones);
+					var e;
+				function Botones(){
+					var x;
+					x=$(document);
+					x.bind('click contextmenu auxclick', function(e) {
+						if (e.which == 3) alert("derecho");
+				    else{
+							 	if (e.which == 2) alert("central");
+						 		else alert("izquierdo");
+						}
+						 e.preventDefault();
+						 alert(e.currenTarget);
+					 })
+				}
+
+		</script>
+	</head>
+	<body>
+
+			<button type="button" id="button">Boton</button>
+	</body>
+</html>

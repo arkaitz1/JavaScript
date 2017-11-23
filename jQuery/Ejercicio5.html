@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio5</title>
+    		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" >
+          var x = $(document);
+          x.ready(menu);
+
+          function menu(){
+            x.bind('contextmenu', function(e) {
+              var pad = parseInt($("#menu").css("padding"));
+
+              if(e.clientX+$("#menu").width()>$(window).width()){
+                $("#menu").css("left", $(window).width()-($("#menu").width()+(pad*2)));
+              }else $("#menu").css("left", e.clientX);
+
+              if(e.clientY+$("#menu").height()>$(window).height()){
+                $("#menu").css("top", $(window).height()-($("#menu").height()+(pad*2)));
+              }else $("#menu").css("top", e.clientY);
+
+              $("#menu").show(400);
+              e.preventDefault();
+             })
+          }
+        </script>
+        <style media="screen">
+          .menu{
+            display: none;
+            background-color: #585858;
+            position: absolute;
+            padding: 20px;
+          }
+        </style>
+  </head>
+  <body>
+    <div id="menu" class="menu">
+        Opcion1 <br>
+        Opcion2 <br>
+        Opcion3 <br>
+    </div>
+  </body>
+</html>

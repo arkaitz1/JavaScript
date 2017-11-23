@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Home</title>
+		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+
+
+
+		<script type="text/javascript" >
+					var x = $(document);
+					x.ready(inicializar);
+
+					function inicializar(){
+						x.bind('mousemove', function(e) {
+							if(e.clientX > 400){
+								alert("azul");
+							}
+							$("#X").text(e.clientX);
+							$("#Y").text(e.clientY);
+						})
+					}
+
+
+
+
+					function Botones(){
+					var x;
+					x=$(document);
+					x.bind('click contextmenu', function(e) {
+						 if (e.which == 3) {
+							alert("derecho") }
+				    	 else {
+
+							 if (e.which == 2) {
+								alert("central") }
+						 else		 {
+							 alert("izquierdo") }
+
+						 }
+						 e.preventDefault();
+					})
+				}
+		</script>
+	</head>
+	<body>
+		<p id="X"> ??? </p>
+		<p id="Y"> ??? </p>
+	</body>
+</html>
