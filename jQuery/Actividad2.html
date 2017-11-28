@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio5</title>
+    		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" >
+          var x = $(document);
+          x.ready(attrNombre);
+
+          function attrNombre(){
+            var inN = $("#inNombre");
+            var msg = inN.prop("value");
+            s
+            inN.focus(function(){
+              if(inN.prop("value") == msg){
+                inN.prop("value", "");
+                inN.css("color", "black");
+              }
+            });
+
+            inN.blur(function(){
+              if(inN.prop("value") == ""){
+                inN.prop("value", msg);
+                inN.css("color", "#BDBDBD");
+              }
+            });
+          }
+        </script>
+        <style media="screen">
+          .inputNombre{
+            color:#BDBDBD;
+          }
+        </style>
+  </head>
+  <body>
+    <label for="inNombre">Nombre: </label><input type="text" class="inputNombre" name="inNombre" id="inNombre" value="Escribe aqui...">
+  </body>
+</html>

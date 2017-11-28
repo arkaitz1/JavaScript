@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio5</title>
+    		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" >
+          var x = $(document);
+          x.ready(menu);
+
+          function menu(){
+            x.bind('contextmenu', function(e) {
+              if($("#menu").css("display") != "none")
+                $("#menu").css("display", "none");
+              var pad = parseInt($("#menu").css("padding"));
+
+              if(e.clientX+$("#menu").width()>$(window).width()){
+                $("#menu").css("left", $(window).width()-($("#menu").width()+(pad*2)+2));
+              }else $("#menu").css("left", e.clientX);
+
+              if(e.clientY+$("#menu").height()>$(window).height()){
+                $("#menu").css("top", $(window).height()-($("#menu").height()+(pad*2)+2));
+              }else $("#menu").css("top", e.clientY);
+
+              $("#menu").slideToggle(400);
+              e.preventDefault();
+             })
+             $(".menu").bind('click', function(e) {
+               $("#menu").slideToggle();
+             })
+          }
+        </script>
+        <style media="screen">
+          .menu{
+            display: none;
+            background-color: #F8F8FF;
+            position: absolute;
+            padding: 0px;
+            border: solid 1px black;
+
+          }
+          .item:hover{
+            background-color: #DCDCDC;
+            cursor:pointer;
+          }
+          .item{
+            padding: 10px;
+          }
+          a{
+            text-decoration: none;
+            color: black;
+          }
+        </style>
+  </head>
+  <body>
+    <div class="texto">
+      <h2>Haz click derecho para seleccionar una opcion</h2>
+    </div>
+    <div id="menu" class="menu">
+      <div class="item"><a href="http://www.google.es" target="blanc_">1.- Google</a></div>
+      <div class="item"><a href="http://www.bing.es" target="blanc_">2.- Bing</a></div>
+      <div class="item"><a href="http://www.yahoo.es" target="blanc_">3.- Yahoo</a></div>
+    </div>
+  </body>
+</html>
