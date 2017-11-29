@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Actividad3-5</title>
+    		<script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" >
+          var x = $(document);
+          x.ready(ocultar);
+
+          function ocultar(){
+            $("ul li:first").click(function(){
+              $("ul li:first").hide(400);
+            });
+          }
+        </script>
+        <style media="screen">
+
+        </style>
+  </head>
+  <body>
+    Lista1
+    <ul>
+      <li>Toritlla</li>
+      <li>Jamon</li>
+      <li>Queso</li>
+    </ul>
+    Lista 2
+    <ul>
+      <li>CocaCola</li>
+      <li>Leche</li>
+      <li>Te</li>
+    </ul>
+  </body>
+</html>
