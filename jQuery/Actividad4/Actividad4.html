@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Actividad 4</title>
+    <script src="../js/jquery-3.2.1.js" charset="utf-8"></script>
+    <script src="Noticias.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css">
+    <style media="screen">
+    </style>
+    <script type="text/javascript">
+      $(document).ready(clicksTitulos);
+      var abierto = null;
+      var abiertoCss = null;
+      function clicksTitulos(){
+        $(".desplegable").click(desplegar);
+      }
+      function desplegar(){
+        var ahora = $("+ .plegable", this);
+        if(abierto) {
+          abierto.slideUp(400);
+          abiertoCss.css("background","white");
+        }
+        if(ahora.css("display") == "none"){
+          $(this).css("background","linear-gradient(to right, blue, white)");
+          ahora.slideDown(400);
+        }
+        abierto = ahora;
+        abiertoCss = $(this);
+      }
+    </script>
+  </head>
+  <body id="general">
+    <script type="text/javascript">
+      for(i=1;i<aNoticias.length;i++){
+          document.write("<div class='desplegable'><h1>"+aNoticias[i][1]+"</h1></div>");
+          document.write("<div class='plegable'>");
+            document.write("<img src='"+aNoticias[i][3]+"' class='foto' />");
+            document.write("<p>"+aNoticias[i][2]+"</p>");
+          document.write("</div>");
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,48 @@
+
+#general{
+	font-size:16px;
+	font-family:Consolas;
+}
+.desplegable{
+	border: 2px solid #565656;
+	margin: 5px auto;
+	width:70%;
+	cursor: pointer;
+}
+.desplegable:hover{
+	box-shadow: 4px 4px 4px #828282;
+
+
+}
+.desplegable h1{
+	margin: 20px 40px;
+
+}
+.plegable{
+	display:none;
+	border: 1px solid #565656;
+	margin: 0 auto;
+	width:70%;
+	margin-top:10px;
+	overflow: hidden;
+}
+.plegable img{
+	width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 10px;
+	margin-right: 30px;
+    float: left;
+    border-radius: 100%;
+	box-shadow: 3px 3px 7px rgb(95, 95, 95);
+}
+.plegable p{
+	margin: 10px 30px;
+    text-align: justify;
+	color: #565656;
+}
+/*Esta id es para los div de la clase "desplegable", cuando son activados */
+#activo{
+	background: linear-gradient(to right, #0066af , #dadada);
+	color: white;
+}
