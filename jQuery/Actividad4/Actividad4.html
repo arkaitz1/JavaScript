@@ -8,27 +8,41 @@
     <link rel="stylesheet" href="style.css">
     <style media="screen">
     </style>
-    <script type="text/javascript">
-      $(document).ready(clicksTitulos);
-      var abierto = null;
-      var abiertoCss = null;
-      function clicksTitulos(){
-        $(".desplegable").click(desplegar);
-      }
-      function desplegar(){
-        var ahora = $("+ .plegable", this);
-        if(abierto) {
-          abierto.slideUp(400);
-          abiertoCss.css("background","white");
-        }
-        if(ahora.css("display") == "none"){
-          $(this).css("background","linear-gradient(to right, blue, white)");
-          ahora.slideDown(400);
-        }
-        abierto = ahora;
-        abiertoCss = $(this);
-      }
-    </script>
+<script type="text/javascript">
+  $(document).ready(clicksTitulos);
+  var abierto = null;
+  var abiertoCss = null;
+
+  function clicksTitulos() {
+    $(".desplegable").click(desplegarOptimizado);
+  }
+
+  function desplegarOptimizado() {
+    var ahora = $("+ .plegable", this);
+    if (abierto) {
+      abierto.slideUp(400);
+      abiertoCss.removeClass("activo");
+    }
+    if (ahora.css("display") == "none") {
+      $(this).addClass("activo");
+      ahora.slideDown(400);
+    }
+    abierto = ahora;
+    abiertoCss = $(this);
+  }
+
+  function desplegar() {
+    if($(this).attr("id")=="activo"){
+      $("+ .plegable", this).slideToggle(400);
+      $(".desplegable").removeAttr("id");
+      return;
+    }
+    $(".plegable").slideUp(400);
+    $(".desplegable").removeAttr("id");
+    $("+ .plegable", this).slideToggle(400);
+    $(this).attr("id", "activo");
+  }
+</script>
   </head>
   <body id="general">
     <script type="text/javascript">

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.Contenido
+{
+    display: none;
+}
+.Noticia
+{
+    display:inline;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>Documento sin título</title>
+	<script src="ArrayNoticias.js" ></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		function escribir() {
+			for(i = 1; i <= iNoticias; i++){
+				//div que engloba el título y cuerpo de cada noticia con su id
+				document.write("<div class='Noticia' id='Not-" + i + "'>");
+				document.write("<h1>" + aNoticias[i][1] + "</h1>");
+				document.write("<div class='Contenido' id='Cont-" + i + "'>");
+				//Imágen
+				document.write("<img src='" + aNoticias[i][3] + "'>");
+				//Noticia
+				document.write(aNoticias[i][2]);
+				document.write("</div>");
+                document.write("</div>");
+			}
+			document.write("</div>");
+		}
+	</script>
+</head>
+
+<body>
+<script>
+	escribir();
+</script>
+</body>
+	<script>
+		d = $(document);
+		d.ready(inicializar);
+		function inicializar() {
+			var e;
+			e = $(".Noticia");
+			e.click(function () {
+                sNombre=this.id;
+                iNot=sNombre[sNombre.length-1]
+                $("#Cont-"+iNot).slideToggle();
+			});
+		}
+
+	</script>
+</html>
