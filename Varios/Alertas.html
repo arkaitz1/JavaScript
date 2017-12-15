@@ -10,26 +10,15 @@
 			alert("Egun on\nLa posicion es: "+(fil*col)+"\nLa fila es: "+fil+"\nLa fila es: "+fil+" la columna es: "+col);
 		}
 		function cargar(){
-			var n = 10;
-			
-			document.write("<h1>A</h1>");
-			for(var i=0; i<n;i++)
-				document.write("<p>Plaiaundi</p>");
-				
-			document.write("<h1>B</h1>");
-			for(var i=0; i<n;i++)
-				document.write("<h2>Plaiaundi</h2>");
-				
-			document.write("<h1>D</h1>");
 			document.write("<table border=1>");
-			
+
 			for(var i=0; i < 5; i++){
 				document.write("<tr>");
 				for(var j=0; j < 5; j++)
 					document.write("<td><input type='button' value='plaiaundi' onClick='alertas("+i+","+j+")'></td>");
 				document.write("</tr>");
 			}
-			
+
 			document.write("</table>");
 		}
 
@@ -39,6 +28,6 @@
     <body onLoad="cargar();">
 
 
-        
+
     </body>
 </html>

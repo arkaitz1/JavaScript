@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <title>Documento sin título</title>
-        <script language="JavaScript">
-        	function cambiar(){
+  <script language="JavaScript">
+      function cambiar(){
 				var nImg = imLetraN.src.replace(/^.*[\\\/]/, '');
 				if (nImg == "AVerde.gif"){
-					imLetraN.src == "img/ANegra.gif";
+					imLetraN.src = "img/ANegra.gif";
 				}else{
-					imLetraN.src == "img/AVerde.gif";
+					imLetraN.src = "img/AVerde.gif";
 				}
 			}
-        </script>
+  </script>
 </head>
 
     <body>
         <p><img src="img/ANegra.gif" alt="" width="148" height="129" id="imLetraN"/>
         </p>
         <p>
-          <input type="button" name="button" id="bCambiar" value="Cambiar" onClick="cambiar();">
+          <input type="button" name="button" id="bCambiar" value="Cambiar" onclick="cambiar();">
         </p>
     </body>
 </html>
