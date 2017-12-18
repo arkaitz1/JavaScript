@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Enunciado:
+Crea un documento con un par de enlaces mediante el atributo href y oculta ambos enlaces.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Actividad3-7</title>
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" >
+          $(document).ready(ocultar);
+          function ocultar(){
+            $("#btOcultar").click(function(){
+              $("a").hide(400);
+            });
+          }
+        </script>
+        <style media="screen">
+
+        </style>
+  </head>
+  <body>
+    <a href="#">Enlace 1</a>
+    <br />
+    <a href="#">Enlace 2</a>
+    <br />
+    <button type="button" name="btOcultar" id="btOcultar">Ocultar</button>
+  </body>
+</html>

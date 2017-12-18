@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Enunciado:
+Crea un documento con dos enlaces y dos botones.
+Uno se tiene que abrir en una nueva ventana (target="_blank") y el otro no.
+Cada botón debe ocultar uno de los enlaces en función de su atributo target.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Actividad3-8</title>
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" >
+          $(document).ready(ocultar);
+          function ocultar(){
+            $("#btOcultar1").click(function(){
+              $("[target='_blank']").hide(400);
+            });
+            $("#btOcultar2").click(function(){
+              $("[target='_self']").hide(400);
+            });
+          }
+        </script>
+        <style media="screen">
+
+        </style>
+  </head>
+  <body>
+    <a href="#" target="_blank">Enlace 1 (_blank)</a>
+    <br />
+    <a href="#" target="_self">Enlace 2 (_seft)</a>
+    <br />
+    <button type="button" name="btOcultar1" id="btOcultar1">Ocultar enlaces _blank</button>
+    <button type="button" name="btOcultar2" id="btOcultar2">Ocultar enllaces _self</button>
+  </body>
+</html>

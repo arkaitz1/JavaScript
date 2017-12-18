@@ -1,12 +1,17 @@
 <!DOCTYPE html>
+<!--
+Enunciado:
+En el mismo documento HTML anterior.
+Suponemos que el encabezado y el primer párrafo tienen el atributo class=”intro”.
+Deberás ocultar al clickar el botón, dicho párrafo.
+-->
 <html>
   <head>
     <meta charset="utf-8">
     <title>Actividad3-3</title>
-    		<script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" >
-          var x = $(document);
-          x.ready(ocultar);
+          $(document).ready(ocultar);
 
           function ocultar(){
             $("#btPrueba").click(function(){

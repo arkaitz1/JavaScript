@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Enunciado:
+Crea un documento con un botón que se oculte el botón  al clickarlo.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Actividad3-9</title>
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" >
+          $(document).ready(ocultar);
+          function ocultar(){
+            $("#btOcultar").click(function(){
+              $(this).hide(400);
+            });
+          }
+        </script>
+        <style media="screen">
+
+        </style>
+  </head>
+  <body>
+    <button type="button" name="btOcultar" id="btOcultar">Ocultar</button>
+  </body>
+</html>

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+<!--
+Enunciado:
+ Crear un documento HTML con un encabezado, dos párrafos y un botón.
+ Al pulsar el botón mediante el selector $(“*”) se debe ocultar todo. Método hide()
+-->
+
 <html>
   <head>
     <meta charset="utf-8">
     <title>Actividad3-1</title>
-    		<script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" >
-          var x = $(document);
-          x.ready(ocultar);
-
+          $(document).ready(ocultar);
           function ocultar(){
             $("#btPrueba").click(function(){
               $("*").hide(400);

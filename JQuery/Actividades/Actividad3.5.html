@@ -1,13 +1,25 @@
 <!DOCTYPE html>
+<!--
+Enunciado:
+Selecciona el primer elemento de la primera lista y oculta dicho elemento.
+
+Lista 1:
+●     Tortilla
+●     Jamón
+●     Queso
+
+Lista 2:
+■     Coca Cola
+■     Leche
+■     Té
+-->
 <html>
   <head>
     <meta charset="utf-8">
     <title>Actividad3-5</title>
-    		<script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" >
-          var x = $(document);
-          x.ready(ocultar);
-
+          $(document).ready(ocultar);
           function ocultar(){
             $("li:first").click(function(){
               $(this).hide(400);
