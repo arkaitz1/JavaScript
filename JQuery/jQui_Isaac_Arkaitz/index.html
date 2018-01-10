@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ui</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="libs/jquery-ui.css">
+  <script src="libs/jquery.js" charset="utf-8"></script>
+  <script src="libs/jquery-ui.js" charset="utf-8"></script>
+
+  <style media="screen">
+    body {
+      min-width: 520px;
+    }
+    .sitios{
+      display: none;
+    }
+    .column {
+      width: 170px;
+      float: left;
+      padding-bottom: 100px;
+    }
+
+    .portlet {
+      margin: 0 1em 1em 0;
+      padding: 0.3em;
+      display: none;
+    }
+
+    .portlet-header {
+      padding: 0.2em 0.3em;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+
+    .portlet-toggle {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: -8px;
+    }
+
+    .portlet-content {
+      padding: 0.4em;
+    }
+
+    .portlet-placeholder {
+      border: 1px dotted black;
+      margin: 0 1em 1em 0;
+      height: 50px;
+    }
+
+    <!--tooltip-->.photo {
+      width: 300px;
+      text-align: center;
+    }
+
+    .photo .ui-widget-header {
+      margin: 1em 0;
+    }
+
+    .map {
+      width: 350px;
+      height: 350px;
+    }
+
+    .ui-tooltip {
+      max-width: 350px;
+    }
+  </style>
+  <script type="text/javascript">
+
+    $(document).ready(chBox);
+    function chBox(){$("input:checkbox").change(cargarDiv);}
+    function cargarDiv(){
+      var idDiv = $(this).attr("value");
+      if($(this).is(':checked')) $("#"+idDiv).show();
+      else $("#"+idDiv).hide();
+    }
+
+    function cargarFechas(strFecha){
+      var DIAS = 3;
+      var fecha = new Date(strFecha);
+      for(i=1;i<=DIAS;i++){
+        $("#dia"+i).html(fecha.toLocaleDateString());
+        fecha.setDate(fecha.getDate() + 1);
+      }
+    }
+    function verSitios(){
+      $(".sitios").show();
+      $("#dvBoton").show();
+    }
+    <!--sortable -->
+    $(function() {
+      $(".column").sortable({
+        connectWith: ".column",
+        handle: ".portlet-header",
+        cancel: ".portlet-toggle",
+        placeholder: "portlet-placeholder ui-corner-all"
+      });
+
+      $(".portlet")
+        .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+        .find(".portlet-header")
+        .addClass("ui-widget-header ui-corner-all")
+        .prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+      $(".portlet-toggle").on("click", function() {
+        var icon = $(this);
+        icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
+        icon.closest(".portlet").find(".portlet-content").toggle();
+      });
+    });
+    <!--datapiker-->
+    var fecha;
+    $(function() {
+     $("#datepicker").datepicker({
+       showOn: "button",
+       buttonImage: "libs/images/calendar.gif",
+       buttonImageOnly: true,
+       buttonText: "Select date",
+       showAnim: "bounce",
+       onSelect: function(date) {
+         verSitios();
+         cargarFechas(date);
+       }
+     });
+     });
+    <!--button-->
+    $(function() {
+      $(".widget button").button({
+        icon: "ui-icon-play"
+      });
+      $("button").click(function(event) {
+        event.preventDefault();
+        alert("Forulario Enviado");
+
+      });
+    });
+    <!--tooltip-->
+    $(function() {
+      $(document).tooltip({
+        items: "img, [data-geo], [title]",
+        content: function() {
+          var element = $(this);
+          if (element.is("[data-geo]")) {
+            var text = element.text();
+            return "<img class='map' alt='" + text +
+              "' src='http://maps.google.com/maps/api/staticmap?" +
+              "zoom=11&size=350x350&maptype=terrain&sensor=false&center=" +
+              text + "'>";
+          }
+          if (element.is("[title]")) {
+            return element.attr("title");
+          }
+          if (element.is("img")) {
+            return element.attr("alt");
+          }
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--datapiker-->
+  <p>Date: <input type="text" disabled id="datepicker"></p>
+<div class="sitios">
+  <!--checkbox-->
+  <input type="checkbox" id="chbLuvbre" name="chbLuvbre" value="louvre">Louvre
+  <input type="checkbox" id="chbTorreEifel" name="chbTorreEifel" value="torreEifel">Torre Eifel
+  <input type="checkbox" id="chbMoulinrouge" name="chbMoulinrouge" value="moulinRouge">Moulin Rouge
+  <input type="checkbox" id="chbMontMatre" name="chbMontMatre" value="montMatre">Mont Matre
+  <input type="checkbox" id="chbVersalles" name="chbVersalles" value="versalles">Versalles
+</div>
+
+<div>
+  <!--sortable-->
+  <div class="column">
+    <h3 id="dia1"></h3>
+
+    <div class="portlet" id="louvre">
+      <div class="portlet-header"><span data-geo="">Louvre</span></div>
+      <div class="portlet-content"><img src="imgs/louvre.jpg" width="130px" height="70px" alt="Louvre"></div>
+    </div>
+
+    <div class="portlet" id="torreEifel">
+      <div class="portlet-header"><span data-geo="">Torre Eifel</span></div>
+      <div class="portlet-content"><img src="imgs/eifel.jpg" width="130px" height="70px" alt="Torre Eifel"></div>
+    </div>
+
+  </div>
+
+  <div class="column">
+    <h3 id="dia2"></h3>
+
+    <div class="portlet" id="moulinRouge">
+      <div class="portlet-header"><span data-geo="">Moulin Rouge</span></div>
+      <div class="portlet-content"><img src="imgs/moulin.jpg" width="130px" height="70px" alt="moulin rouge"></div>
+    </div>
+
+  </div>
+
+  <div class="column">
+    <h3 id="dia3"></h3>
+
+    <div class="portlet" id="montMatre">
+      <div class="portlet-header"><span data-geo="">Mont Matre</span></div>
+      <div class="portlet-content"><img src="imgs/montmatre.jpg" width="130px" height="70px" alt="mont matre"></div>
+    </div>
+
+    <div class="portlet" id="versalles">
+      <div class="portlet-header"><span data-geo="">Versalles</span></div>
+      <div class="portlet-content"><img src="imgs/versalles.jpg" width="130px" height="70px" alt="versalles"></div>
+    </div>
+
+  </div>
+</div>
+<div id="dvBoton" class="widget" style="clear: both;display: none;">
+    <button>Enviar</button>
+</div>
+
+</body>
+
+</html>
