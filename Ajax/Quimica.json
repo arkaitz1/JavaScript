@@ -1,0 +1,462 @@
+{
+  "Quimica": {
+    "Elemento": [
+      {
+        "Nombre": "Hidr�ógeno",
+        "Simbolo": "H",
+        "Estado": "Gas",
+        "nAtomico": "1"
+      },
+      {
+        "Nombre": "Helio",
+        "Simbolo": "He",
+        "Estado": "Gas",
+        "nAtomico": "2"
+      },
+      {
+        "Nombre": "Litio",
+        "Simbolo": "Li",
+        "Estado": "S�lido",
+        "nAtomico": "3"
+      },
+      {
+        "Nombre": "Berilio",
+        "Simbolo": "Be",
+        "Estado": "S�lido",
+        "nAtomico": "4"
+      },
+      {
+        "Nombre": "Boro",
+        "Simbolo": "B",
+        "Estado": "L�quido",
+        "nAtomico": "5"
+      },
+      {
+        "Nombre": "Carbono",
+        "Simbolo": "C",
+        "Estado": "S�lido",
+        "nAtomico": "6"
+      },
+      {
+        "Nombre": "Nitr�geno",
+        "Simbolo": "N",
+        "Estado": "Gas",
+        "nAtomico": "7"
+      },
+      {
+        "Nombre": "Ox�geno",
+        "Simbolo": "O",
+        "Estado": "Gas",
+        "nAtomico": "8"
+      },
+      {
+        "Nombre": "Fl�or",
+        "Simbolo": "F",
+        "Estado": "Gas",
+        "nAtomico": "9"
+      },
+      {
+        "Nombre": "Ne�n",
+        "Simbolo": "Ne",
+        "Estado": "Gas",
+        "nAtomico": "10"
+      },
+      {
+        "Nombre": "Sodio",
+        "Simbolo": "Na",
+        "Estado": "S�lido",
+        "nAtomico": "11"
+      },
+      {
+        "Nombre": "Magnesio",
+        "Simbolo": "Mg",
+        "Estado": "S�lido",
+        "nAtomico": "12"
+      },
+      {
+        "Nombre": "Aluminio",
+        "Simbolo": "Al",
+        "Estado": "S�lido",
+        "nAtomico": "13"
+      },
+      {
+        "Nombre": "Silicio",
+        "Simbolo": "Si",
+        "Estado": "S�lido",
+        "nAtomico": "14"
+      },
+      {
+        "Nombre": "F�sforo",
+        "Simbolo": "P",
+        "Estado": "S�lido",
+        "nAtomico": "15"
+      },
+      {
+        "Nombre": "Azufre",
+        "Simbolo": "S",
+        "Estado": "S�lido",
+        "nAtomico": "16"
+      },
+      {
+        "Nombre": "Cloro",
+        "Simbolo": "Cl",
+        "Estado": "Gas",
+        "nAtomico": "17"
+      },
+      {
+        "Nombre": "Arg�n",
+        "Simbolo": "Ar",
+        "Estado": "Gas",
+        "nAtomico": "18"
+      },
+      {
+        "Nombre": "Potasio",
+        "Simbolo": "K",
+        "Estado": "S�lido",
+        "nAtomico": "19"
+      },
+      {
+        "Nombre": "Calcio",
+        "Simbolo": "Ca",
+        "Estado": "S�lido",
+        "nAtomico": "20"
+      },
+      {
+        "Nombre": "Escandio",
+        "Simbolo": "Sc",
+        "Estado": "S�lido",
+        "nAtomico": "21"
+      },
+      {
+        "Nombre": "Titanio",
+        "Simbolo": "Ti",
+        "Estado": "S�lido",
+        "nAtomico": "22"
+      },
+      {
+        "Nombre": "Vanadio",
+        "Simbolo": "V",
+        "Estado": "S�lido",
+        "nAtomico": "23"
+      },
+      {
+        "Nombre": "Cromo",
+        "Simbolo": "Cr",
+        "Estado": "S�lido",
+        "nAtomico": "24"
+      },
+      {
+        "Nombre": "Manganeso",
+        "Simbolo": "Mn",
+        "Estado": "S�lido",
+        "nAtomico": "25"
+      },
+      {
+        "Nombre": "Hierro",
+        "Simbolo": "Fe",
+        "Estado": "S�lido",
+        "nAtomico": "26"
+      },
+      {
+        "Nombre": "Cobalto",
+        "Simbolo": "Co",
+        "Estado": "S�lido",
+        "nAtomico": "27"
+      },
+      {
+        "Nombre": "N�quel",
+        "Simbolo": "Ni",
+        "Estado": "S�lido",
+        "nAtomico": "28"
+      },
+      {
+        "Nombre": "Cobre",
+        "Simbolo": "Cu",
+        "Estado": "S�lido",
+        "nAtomico": "29"
+      },
+      {
+        "Nombre": "Zinc",
+        "Simbolo": "Zn",
+        "Estado": "S�lido",
+        "nAtomico": "30"
+      },
+      {
+        "Nombre": "Galio",
+        "Simbolo": "Ga",
+        "Estado": "S�lido",
+        "nAtomico": "31"
+      },
+      {
+        "Nombre": "Germanio",
+        "Simbolo": "Ge",
+        "Estado": "S�lido",
+        "nAtomico": "32"
+      },
+      {
+        "Nombre": "Ars�nico",
+        "Simbolo": "As",
+        "Estado": "S�lido",
+        "nAtomico": "33"
+      },
+      {
+        "Nombre": "Selenio",
+        "Simbolo": "Se",
+        "Estado": "S�lido",
+        "nAtomico": "34"
+      },
+      {
+        "Nombre": "Bromo",
+        "Simbolo": "Br",
+        "Estado": "L�quido",
+        "nAtomico": "35"
+      },
+      {
+        "Nombre": "Cript�n",
+        "Simbolo": "Kr",
+        "Estado": "Gas",
+        "nAtomico": "36"
+      },
+      {
+        "Nombre": "Rubidio",
+        "Simbolo": "Rb",
+        "Estado": "S�lido",
+        "nAtomico": "37"
+      },
+      {
+        "Nombre": "Estroncio",
+        "Simbolo": "Sr",
+        "Estado": "S�lido",
+        "nAtomico": "38"
+      },
+      {
+        "Nombre": "Itrio",
+        "Simbolo": "Y",
+        "Estado": "S�lido",
+        "nAtomico": "39"
+      },
+      {
+        "Nombre": "Zirconio",
+        "Simbolo": "Zr",
+        "Estado": "S�lido",
+        "nAtomico": "40"
+      },
+      {
+        "Nombre": "Niobio",
+        "Simbolo": "Nb",
+        "Estado": "S�lido",
+        "nAtomico": "41"
+      },
+      {
+        "Nombre": "Molibdeno",
+        "Simbolo": "Mo",
+        "Estado": "S�lido",
+        "nAtomico": "42"
+      },
+      {
+        "Nombre": "Tecnecio",
+        "Simbolo": "Tc",
+        "Estado": "S�lido",
+        "nAtomico": "43"
+      },
+      {
+        "Nombre": "Rutenio",
+        "Simbolo": "Ru",
+        "Estado": "S�lido",
+        "nAtomico": "44"
+      },
+      {
+        "Nombre": "Rodio",
+        "Simbolo": "Rh",
+        "Estado": "S�lido",
+        "nAtomico": "45"
+      },
+      {
+        "Nombre": "Paladio",
+        "Simbolo": "Pd",
+        "Estado": "S�lido",
+        "nAtomico": "46"
+      },
+      {
+        "Nombre": "Plata",
+        "Simbolo": "Ag",
+        "Estado": "S�lido",
+        "nAtomico": "47"
+      },
+      {
+        "Nombre": "Cadmio",
+        "Simbolo": "Cd",
+        "Estado": "S�lido",
+        "nAtomico": "48"
+      },
+      {
+        "Nombre": "Indio",
+        "Simbolo": "In",
+        "Estado": "S�lido",
+        "nAtomico": "49"
+      },
+      {
+        "Nombre": "Esta�o",
+        "Simbolo": "Sn",
+        "Estado": "S�lido",
+        "nAtomico": "50"
+      },
+      {
+        "Nombre": "Antimonio",
+        "Simbolo": "Sb",
+        "Estado": "S�lido",
+        "nAtomico": "51"
+      },
+      {
+        "Nombre": "Teluro",
+        "Simbolo": "Te",
+        "Estado": "S�lido",
+        "nAtomico": "52"
+      },
+      {
+        "Nombre": "Yodo",
+        "Simbolo": "I",
+        "Estado": "S�lido",
+        "nAtomico": "53"
+      },
+      {
+        "Nombre": "Xen�n",
+        "Simbolo": "Xe",
+        "Estado": "Gas",
+        "nAtomico": "54"
+      },
+      {
+        "Nombre": "Cesio",
+        "Simbolo": "Cs",
+        "Estado": "S�lido",
+        "nAtomico": "55"
+      },
+      {
+        "Nombre": "Bario",
+        "Simbolo": "Ba",
+        "Estado": "S�lido",
+        "nAtomico": "56"
+      },
+      {
+        "Nombre": "Lantano",
+        "Simbolo": "La",
+        "Estado": "S�lido",
+        "nAtomico": "57"
+      },
+      {
+        "Nombre": "Hafnio",
+        "Simbolo": "Hf",
+        "Estado": "S�lido",
+        "nAtomico": "72"
+      },
+      {
+        "Nombre": "T�ntalo",
+        "Simbolo": "Ta",
+        "Estado": "S�lido",
+        "nAtomico": "73"
+      },
+      {
+        "Nombre": "Tungsteno",
+        "Simbolo": "W",
+        "Estado": "S�lido",
+        "nAtomico": "74"
+      },
+      {
+        "Nombre": "Renio",
+        "Simbolo": "Re",
+        "Estado": "S�lido",
+        "nAtomico": "75"
+      },
+      {
+        "Nombre": "Osmio",
+        "Simbolo": "Os",
+        "Estado": "S�lido",
+        "nAtomico": "76"
+      },
+      {
+        "Nombre": "Iridio",
+        "Simbolo": "Ir",
+        "Estado": "S�lido",
+        "nAtomico": "77"
+      },
+      {
+        "Nombre": "Platino",
+        "Simbolo": "Pt",
+        "Estado": "S�lido",
+        "nAtomico": "78"
+      },
+      {
+        "Nombre": "Oro",
+        "Simbolo": "Au",
+        "Estado": "S�lido",
+        "nAtomico": "79"
+      },
+      {
+        "Nombre": "Mercurio",
+        "Simbolo": "Hg",
+        "Estado": "L�quido",
+        "nAtomico": "80"
+      },
+      {
+        "Nombre": "Talio",
+        "Simbolo": "Tl",
+        "Estado": "S�lido",
+        "nAtomico": "81"
+      },
+      {
+        "Nombre": "Plomo",
+        "Simbolo": "Pb",
+        "Estado": "S�lido",
+        "nAtomico": "82"
+      },
+      {
+        "Nombre": "Bismuto",
+        "Simbolo": "Bi",
+        "Estado": "S�lido",
+        "nAtomico": "83"
+      },
+      {
+        "Nombre": "Polonio",
+        "Simbolo": "Po",
+        "Estado": "S�lido",
+        "nAtomico": "84"
+      },
+      {
+        "Nombre": "Astato",
+        "Simbolo": "At",
+        "Estado": "S�lido",
+        "nAtomico": "85"
+      },
+      {
+        "Nombre": "Rad�n",
+        "Simbolo": "Rn",
+        "Estado": "Gas",
+        "nAtomico": "86"
+      },
+      {
+        "Nombre": "Francio",
+        "Simbolo": "Fr",
+        "Estado": "S�lido",
+        "nAtomico": "87"
+      },
+      {
+        "Nombre": "Radio",
+        "Simbolo": "Ra",
+        "Estado": "S�lido",
+        "nAtomico": "88"
+      },
+      {
+        "Nombre": "Actinio",
+        "Simbolo": "Ac",
+        "Estado": "S�lido",
+        "nAtomico": "89"
+      },
+      {
+        "Nombre": "Torio",
+        "Simbolo": "Th",
+        "Estado": "S�lido",
+        "nAtomico": "90"
+      }
+    ]
+  }
+}
