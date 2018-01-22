@@ -1,462 +1,382 @@
-{
-  "Quimica": {
-    "Elemento": [
-      {
-        "Nombre": "Hidr�ógeno",
+[   
+   {
+        "Nombre": "Hijdrógeno",
         "Simbolo": "H",
-        "Estado": "Gas",
-        "nAtomico": "1"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Helio",
         "Simbolo": "He",
-        "Estado": "Gas",
-        "nAtomico": "2"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Litio",
         "Simbolo": "Li",
-        "Estado": "S�lido",
-        "nAtomico": "3"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Berilio",
         "Simbolo": "Be",
-        "Estado": "S�lido",
-        "nAtomico": "4"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Boro",
         "Simbolo": "B",
-        "Estado": "L�quido",
-        "nAtomico": "5"
+        "Estado": "Líquido"
       },
       {
         "Nombre": "Carbono",
         "Simbolo": "C",
-        "Estado": "S�lido",
-        "nAtomico": "6"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "Nitr�geno",
+        "Nombre": "Nitrógeno",
         "Simbolo": "N",
-        "Estado": "Gas",
-        "nAtomico": "7"
+        "Estado": "Gas"
       },
       {
-        "Nombre": "Ox�geno",
+        "Nombre": "Oxígeno",
         "Simbolo": "O",
-        "Estado": "Gas",
-        "nAtomico": "8"
+        "Estado": "Gas"
       },
       {
-        "Nombre": "Fl�or",
+        "Nombre": "Flúor",
         "Simbolo": "F",
-        "Estado": "Gas",
-        "nAtomico": "9"
+        "Estado": "Gas"
       },
       {
-        "Nombre": "Ne�n",
+        "Nombre": "Neón",
         "Simbolo": "Ne",
-        "Estado": "Gas",
-        "nAtomico": "10"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Sodio",
         "Simbolo": "Na",
-        "Estado": "S�lido",
-        "nAtomico": "11"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Magnesio",
         "Simbolo": "Mg",
-        "Estado": "S�lido",
-        "nAtomico": "12"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Aluminio",
         "Simbolo": "Al",
-        "Estado": "S�lido",
-        "nAtomico": "13"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Silicio",
         "Simbolo": "Si",
-        "Estado": "S�lido",
-        "nAtomico": "14"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "F�sforo",
+        "Nombre": "Fósforo",
         "Simbolo": "P",
-        "Estado": "S�lido",
-        "nAtomico": "15"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Azufre",
         "Simbolo": "S",
-        "Estado": "S�lido",
-        "nAtomico": "16"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Cloro",
         "Simbolo": "Cl",
-        "Estado": "Gas",
-        "nAtomico": "17"
+        "Estado": "Gas"
       },
       {
-        "Nombre": "Arg�n",
+        "Nombre": "Argón",
         "Simbolo": "Ar",
-        "Estado": "Gas",
-        "nAtomico": "18"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Potasio",
         "Simbolo": "K",
-        "Estado": "S�lido",
-        "nAtomico": "19"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Calcio",
         "Simbolo": "Ca",
-        "Estado": "S�lido",
-        "nAtomico": "20"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Escandio",
         "Simbolo": "Sc",
-        "Estado": "S�lido",
-        "nAtomico": "21"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Titanio",
         "Simbolo": "Ti",
-        "Estado": "S�lido",
-        "nAtomico": "22"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Vanadio",
         "Simbolo": "V",
-        "Estado": "S�lido",
-        "nAtomico": "23"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Cromo",
         "Simbolo": "Cr",
-        "Estado": "S�lido",
-        "nAtomico": "24"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Manganeso",
         "Simbolo": "Mn",
-        "Estado": "S�lido",
-        "nAtomico": "25"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Hierro",
         "Simbolo": "Fe",
-        "Estado": "S�lido",
-        "nAtomico": "26"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Cobalto",
         "Simbolo": "Co",
-        "Estado": "S�lido",
-        "nAtomico": "27"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "N�quel",
+        "Nombre": "Níquel",
         "Simbolo": "Ni",
-        "Estado": "S�lido",
-        "nAtomico": "28"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Cobre",
         "Simbolo": "Cu",
-        "Estado": "S�lido",
-        "nAtomico": "29"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Zinc",
         "Simbolo": "Zn",
-        "Estado": "S�lido",
-        "nAtomico": "30"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Galio",
         "Simbolo": "Ga",
-        "Estado": "S�lido",
-        "nAtomico": "31"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Germanio",
         "Simbolo": "Ge",
-        "Estado": "S�lido",
-        "nAtomico": "32"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "Ars�nico",
+        "Nombre": "Arsénico",
         "Simbolo": "As",
-        "Estado": "S�lido",
-        "nAtomico": "33"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Selenio",
         "Simbolo": "Se",
-        "Estado": "S�lido",
-        "nAtomico": "34"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Bromo",
         "Simbolo": "Br",
-        "Estado": "L�quido",
-        "nAtomico": "35"
+        "Estado": "Líquido"
       },
       {
-        "Nombre": "Cript�n",
+        "Nombre": "Criptón",
         "Simbolo": "Kr",
-        "Estado": "Gas",
-        "nAtomico": "36"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Rubidio",
         "Simbolo": "Rb",
-        "Estado": "S�lido",
-        "nAtomico": "37"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Estroncio",
         "Simbolo": "Sr",
-        "Estado": "S�lido",
-        "nAtomico": "38"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Itrio",
         "Simbolo": "Y",
-        "Estado": "S�lido",
-        "nAtomico": "39"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Zirconio",
         "Simbolo": "Zr",
-        "Estado": "S�lido",
-        "nAtomico": "40"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Niobio",
         "Simbolo": "Nb",
-        "Estado": "S�lido",
-        "nAtomico": "41"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Molibdeno",
         "Simbolo": "Mo",
-        "Estado": "S�lido",
-        "nAtomico": "42"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Tecnecio",
         "Simbolo": "Tc",
-        "Estado": "S�lido",
-        "nAtomico": "43"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Rutenio",
         "Simbolo": "Ru",
-        "Estado": "S�lido",
-        "nAtomico": "44"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Rodio",
         "Simbolo": "Rh",
-        "Estado": "S�lido",
-        "nAtomico": "45"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Paladio",
         "Simbolo": "Pd",
-        "Estado": "S�lido",
-        "nAtomico": "46"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Plata",
         "Simbolo": "Ag",
-        "Estado": "S�lido",
-        "nAtomico": "47"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Cadmio",
         "Simbolo": "Cd",
-        "Estado": "S�lido",
-        "nAtomico": "48"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Indio",
         "Simbolo": "In",
-        "Estado": "S�lido",
-        "nAtomico": "49"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "Esta�o",
+        "Nombre": "Estaño",
         "Simbolo": "Sn",
-        "Estado": "S�lido",
-        "nAtomico": "50"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Antimonio",
         "Simbolo": "Sb",
-        "Estado": "S�lido",
-        "nAtomico": "51"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Teluro",
         "Simbolo": "Te",
-        "Estado": "S�lido",
-        "nAtomico": "52"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Yodo",
         "Simbolo": "I",
-        "Estado": "S�lido",
-        "nAtomico": "53"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "Xen�n",
+        "Nombre": "Xenón",
         "Simbolo": "Xe",
-        "Estado": "Gas",
-        "nAtomico": "54"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Cesio",
         "Simbolo": "Cs",
-        "Estado": "S�lido",
-        "nAtomico": "55"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Bario",
         "Simbolo": "Ba",
-        "Estado": "S�lido",
-        "nAtomico": "56"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Lantano",
         "Simbolo": "La",
-        "Estado": "S�lido",
-        "nAtomico": "57"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Hafnio",
         "Simbolo": "Hf",
-        "Estado": "S�lido",
-        "nAtomico": "72"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "T�ntalo",
+        "Nombre": "Tántalo",
         "Simbolo": "Ta",
-        "Estado": "S�lido",
-        "nAtomico": "73"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Tungsteno",
         "Simbolo": "W",
-        "Estado": "S�lido",
-        "nAtomico": "74"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Renio",
         "Simbolo": "Re",
-        "Estado": "S�lido",
-        "nAtomico": "75"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Osmio",
         "Simbolo": "Os",
-        "Estado": "S�lido",
-        "nAtomico": "76"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Iridio",
         "Simbolo": "Ir",
-        "Estado": "S�lido",
-        "nAtomico": "77"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Platino",
         "Simbolo": "Pt",
-        "Estado": "S�lido",
-        "nAtomico": "78"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Oro",
         "Simbolo": "Au",
-        "Estado": "S�lido",
-        "nAtomico": "79"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Mercurio",
         "Simbolo": "Hg",
-        "Estado": "L�quido",
-        "nAtomico": "80"
+        "Estado": "Líquido"
       },
       {
         "Nombre": "Talio",
         "Simbolo": "Tl",
-        "Estado": "S�lido",
-        "nAtomico": "81"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Plomo",
         "Simbolo": "Pb",
-        "Estado": "S�lido",
-        "nAtomico": "82"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Bismuto",
         "Simbolo": "Bi",
-        "Estado": "S�lido",
-        "nAtomico": "83"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Polonio",
         "Simbolo": "Po",
-        "Estado": "S�lido",
-        "nAtomico": "84"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Astato",
         "Simbolo": "At",
-        "Estado": "S�lido",
-        "nAtomico": "85"
+        "Estado": "Sólido"
       },
       {
-        "Nombre": "Rad�n",
+        "Nombre": "Radón",
         "Simbolo": "Rn",
-        "Estado": "Gas",
-        "nAtomico": "86"
+        "Estado": "Gas"
       },
       {
         "Nombre": "Francio",
         "Simbolo": "Fr",
-        "Estado": "S�lido",
-        "nAtomico": "87"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Radio",
         "Simbolo": "Ra",
-        "Estado": "S�lido",
-        "nAtomico": "88"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Actinio",
         "Simbolo": "Ac",
-        "Estado": "S�lido",
-        "nAtomico": "89"
+        "Estado": "Sólido"
       },
       {
         "Nombre": "Torio",
         "Simbolo": "Th",
-        "Estado": "S�lido",
-        "nAtomico": "90"
+        "Estado": "Sólido"
       }
-    ]
-  }
-}
+]

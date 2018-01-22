@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Medallero</title>
+    <script type="text/javascript">
+      function CargarMedallas(){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+          if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            jDatos = JSON.parse(xmlhttp.responseText);
+            strTabla = CrearTabla(jDatos);
+    				tabla.innerHTML = strTabla ;
+          }
+        }
+        xmlhttp.open("POST" ,"Medallero.php",true);
+        xmlhttp.send();
+      }
+      function CrearTabla(aDatos){
+        strTabla = "<table border=1>";
+        for(i=0; i < aDatos.length ; i++){
+          if((aDatos[i]["Oro"] == 0) && (aDatos[i]["Plata"] == 0) && (aDatos[i]["Bronce"] == 0)) continue;
+            strTabla += "<tr><td>" + aDatos[i]["Pais"] + "</td><td>";
+            for(j=0;j<aDatos[i]["Oro"];j++) strTabla += "<img src='Medallas/Oro.gif' />";
+            for(j=0;j<aDatos[i]["Plata"];j++) strTabla += "<img src='Medallas/Plata.gif' />";
+            for(j=0;j<aDatos[i]["Bronce"];j++) strTabla += "<img src='Medallas/Bronce.gif' />";
+            strTabla += "</td></tr>";
+        }
+        strTabla += "</table>";
+        return strTabla;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="tabla">
+
+    </div>
+  </body>
+  <script type="text/javascript">
+    CargarMedallas();
+    setInterval(CargarMedallas, 2000);
+  </script>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+<script>
+function leeComunidad(sComunidad){
+	var divResultado= document.getElementById('Elemento');
+	var xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange =
+		function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+				var jResp = JSON.parse(xmlhttp.responseText);
+				var strRes = [];
+				for(var i = 0;i < jResp.length;i++ )
+					strRes[i] = jResp[i]["Provincia"];
+				divResultado.innerHTML = strRes.sort().toString().replace(/,/g, " ");
+
+			}
+		}
+	xmlhttp.open("GET","AccesoProvinciasJSON.php?comuniad="+sComunidad);
+	xmlhttp.send();
+}
+strComunidades = "PAV,CAM,VAL,AND,AST,CAL,EXT,BAL,CAT,CAN,ARA,GAL,RIO,ICA,MAD,MUR,NAV";
+aComunidades = strComunidades.split(",");
+</script>
+<body>
+<p>
+  <select onchange="leeComunidad(this.value)">
+    <script type="text/javascript">
+		for(i=0;i<aComunidades.length;i++){
+			document.write("<option value='"+aComunidades[i]+"'>"+aComunidades[i]+"</option>")
+		}
+    </script>
+  </select>
+</p>
+<p>&nbsp; </p>
+<div style ="font-size:24px"  id="Elemento"> </div>
+</body>
+</html>

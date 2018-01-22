@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tiempo</title>
+    <script type="text/javascript">
+      function CargarTiempo(){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+          if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            jDatos = JSON.parse(xmlhttp.responseText);
+            strTabla = CrearTabla(jDatos);
+            tabla.innerHTML = strTabla ;
+          }
+        }
+        xmlhttp.open("POST" ,"Tiempo.php",true);
+        xmlhttp.send();
+      }
+      function CrearTabla(aDatos){
+        strTabla = "<table border=1>";
+        for(i=0; i < aDatos.length ; i++){
+            strTabla += "<tr><td>" + aDatos[i]["Ciudad"] + "</td><td>";
+            strTabla += "<img src='Letras/"+aDatos[i]["Estado"]+".gif' />"
+            strTabla += "</td></tr>";
+        }
+        strTabla += "</table>";
+        return strTabla;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="tabla">
+
+    </div>
+  </body>
+  <script type="text/javascript">
+    CargarTiempo();
+    setInterval(CargarTiempo, 2000);
+  </script>
+</html>
