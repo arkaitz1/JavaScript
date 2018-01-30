@@ -24,7 +24,7 @@
         sTabla += "<table border='1'>";
         for(i=0;i<jResp.length;i++){
           sTabla += "<tr>";
-            sTabla += "<td>"+jResp[i][0]+"</td><td>"+jResp[i][1]+"</td>";
+            sTabla += "<td>"+jResp[i][0]+"</td><td>"+jResp[i][1]+"</td><td>"+jResp[i][2]+"</td>";
           sTabla+= "</tr>";
         }
           sTabla+="</table>"
